@@ -38,27 +38,10 @@ export class NavComponent extends React.PureComponent<INaveProps> {
                   <Link to="/sign-in" className="unset-anchor nav-link">Sign In</Link>
                 </li>
             }
-
-            <li className="nav-item active">
-              <Link to="/first" className="unset-anchor nav-link">First</Link>
-            </li>
-            <li className="nav-item active">
-              <Link to="/second" className="unset-anchor nav-link">Second</Link>
-            </li>
-            <li className="nav-item active">
-              <Link to="/clicker" className="unset-anchor nav-link">Clicker {this.props.clicker.clicks}</Link>
-            </li>
-            <li className="nav-item active">
-              <Link to="/spaceships" className="unset-anchor nav-link">Spaceships</Link>
-            </li>
             <li className="nav-item active dropdown">
               <div className="nav-link dropdown-toggle pointer" id="examples-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples</div>
               <div className="dropdown-menu" aria-labelledby="examples-dropdown">
-                <div className="dropdown-item"><Link to="/movies" className="unset-anchor nav-link active">Movies</Link></div>
-                <div className="dropdown-item"><Link to="/clicker" className="unset-anchor nav-link active">Clicker Game</Link></div>
-                <div className="dropdown-item"><Link to="/tic-tac-toe" className="unset-anchor nav-link active">Tic Tac Toe Game</Link></div>
-                <div className="dropdown-item"><Link to="/chuck-norris" className="unset-anchor nav-link active">Chuck Norris Jokes</Link></div>
-                <div className="dropdown-item"><Link to="/pokemon" className="unset-anchor nav-link active">Pokemon</Link></div>
+                <div className="dropdown-item"><Link to="/home" className="unset-anchor nav-link active">Example</Link></div>
               </div>
             </li>
             <li className="nav-item active">
