@@ -1,6 +1,8 @@
 import React from 'react';
 import { UserCardComponent } from './user.fixed.profile.card.somponent';
 import { User } from '../../model/user';
+import { IState } from '../../reducers';
+import { connect } from 'react-redux';
 
 interface UserState{
   currentUser: User;
@@ -31,3 +33,11 @@ export class UserInfoComponent extends React.Component<any, UserState> {
     );
   }
 }
+
+const mapStateToProps = (state: IState) => {
+    return {
+        currentUser: state.auth.currentUser
+    }
+}
+
+export default connect(mapStateToProps)(UserInfoComponent);
