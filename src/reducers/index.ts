@@ -17,7 +17,6 @@ export interface IAuthState {
   currentUser?: User,
   errorMessage?: string
 } 
-
 export interface IState {
   clicker: IClickerState,
   chuckNorris: IChuckNorrisState,
