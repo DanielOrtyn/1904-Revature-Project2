@@ -1,6 +1,7 @@
 import React from 'react';
 import { SaleItem } from '../../model/saleItem';
-import { SmallSaleItemComponent } from './saleitem.smallcard.component';
+// import { SmallSaleItemComponent } from './saleitem.smallcard.component';
+import { SaleItemSmallCardComponent } from '../saleitem/saleitem-card.component';
 
 interface ISaleItemListComponentProps {
     saleItemList: SaleItem[]
@@ -19,7 +20,7 @@ export class SaleItemListComponent extends React.PureComponent<ISaleItemListComp
         return (
             <>
                 {this.props.saleItemList.map(saleItem => (
-                    <SmallSaleItemComponent  key={'saleItem-' + saleItem.saleId} item={saleItem} />
+                    <SaleItemSmallCardComponent  key={'saleItem-' + saleItem.saleId} saleItem={saleItem} />
                 ))}
             </>
         );
