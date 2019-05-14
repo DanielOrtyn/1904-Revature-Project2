@@ -10,7 +10,7 @@ export const userTypes = {
 
 export const login = (username: string, password: string, history: any) => async (dispatch) => {
     try {
-        const resp = await fetch(environment.context + '/User', {
+        const resp = await fetch(environment.context + '/Auth/login', {
             method: 'POST',
             credentials: 'include',
             body: JSON.stringify({ username, password }),
@@ -18,21 +18,21 @@ export const login = (username: string, password: string, history: any) => async
                 'content-type': 'application/json'
             }
         })
-
         if (resp.status === 401) {
             dispatch({
                 type: userTypes.INVALID_CREDENTIALS
             })
-        } else if (resp.status === 200) {
-            // redirect to spaceships page
+        } else if (resp.status >= 200 && resp.status < 300) {
             const user = await resp.json();
+            console.log(user);
+
             dispatch({
                 payload: {
                     user
                 },
                 type: userTypes.CHANGE_USER_FEILD
             })
-            history.push('/spaceships');
+            history.push('/home');
         } else {
             dispatch({
                 type: userTypes.FAILED_TO_LOGIN
