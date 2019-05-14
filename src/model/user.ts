@@ -7,7 +7,7 @@ export class User {
   name: string;
   email: string;
   postal: string;
-  img: Img;
+  profileImg: Img;
 
   constructor(userId = 0, username = '', password = '', name = '', email='', postal='', img:Img) {
     this.userId = userId;
@@ -16,6 +16,6 @@ export class User {
     this.name = name;
     this.email = email;
     this.postal = postal;
-    this.img = img;
+    this.profileImg = img;
   }
 }
