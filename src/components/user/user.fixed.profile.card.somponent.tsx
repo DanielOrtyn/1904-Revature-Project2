@@ -22,13 +22,12 @@ interface IUserCardProps
               <tr>
                 <td>
                     <img src={this.props.TheUser.profileImg.url}
-                        className="card-img-top"
+                        className="FixedCardImage"
                         alt="..." />
                     <h5 className="card-title">{myuser.name}</h5>
                 </td>
                 <td>
                     <ul className="list-group list-group-flush">
-                        <li className="list-group-item">{this.props.TheUser.name}</li>
                         <li className="list-group-item">{this.props.TheUser.username}</li>
                         <li className="list-group-item">{this.props.TheUser.password}</li>
                         <li className="list-group-item">{this.props.TheUser.email}</li>
