@@ -4,13 +4,13 @@ import './App.scss';
 import NavComponent from './components/nav/nav.component';
 import './include/bootstrap';
 import { FirstComponent } from './components/first.component';
-import { SecondComponent } from './components/second.component';
 import { HomeComponent } from './components/home/home.component';
 import SignInComponent from './components/sign-in/sign-in.component';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import { UserInfoComponent } from './components/user/user.info.page.component';
 import { SaleItemComponent } from './components/saleitem/saleitem.component';
+import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
 
 const App: React.FC = () => {
   return (
@@ -21,10 +21,10 @@ const App: React.FC = () => {
           <Switch>>
             <Route path="/first" component={FirstComponent} />
             <Route path="/home" component={HomeComponent} />
-            <Route path="/second" component={SecondComponent} />
             <Route path="/sign-in" component={SignInComponent} />
             <Route path="/user-info" component={UserInfoComponent}/>
             <Route path="/saleitemtest" component={SaleItemComponent}/>
+            <Route path="/saleitemList" component={SaleItemCategoryListComponent}/>
             <Route component={HomeComponent} />
           </Switch>
         </div>

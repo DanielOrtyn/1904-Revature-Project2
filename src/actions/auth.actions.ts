@@ -8,7 +8,7 @@ export const authTypes = {
 
 export const login = (username: string, password: string, history: any) => async(dispatch) => {
   try {
-    const resp = await fetch(environment.context + '/users/login', {
+    const resp = await fetch(environment.context + '/User', {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({username, password}),
@@ -16,6 +16,7 @@ export const login = (username: string, password: string, history: any) => async
         'content-type': 'application/json'
       }
     })
+    console.log("Response");
     console.log(resp);
 
     if (resp.status === 401) {

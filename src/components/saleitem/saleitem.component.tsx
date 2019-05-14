@@ -1,6 +1,6 @@
 import React from 'react';
 import { SaleItem } from '../../model/saleItem';
-import { testItem } from '../../testAssets/testObjects';
+// import { testItem } from '../../testAssets/testObjects';
 
 
 interface ISaleItemComponentProps {
@@ -23,9 +23,9 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
     // in here we should initialize http calls
     componentDidMount = async () => {
         // fetch item from server
-        this.setState({
-            item: testItem
-        })
+        // this.setState({
+        //     item: testItem
+        // })
     }
 
     openBidMaker = () => {
@@ -42,7 +42,7 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
             return (
                 <>
                     <div>
-                        <img src={this.state.item.imageUrl} alt='test' width='300' height='200' />
+                        <img src={this.state.item.itemImg.url} alt='test' width='300' height='200' />
                     </div>
                     <div className='bidDetailDiv'>
                         <h1>{this.state.item.title}</h1>

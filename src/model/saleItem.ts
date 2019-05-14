@@ -1,29 +1,34 @@
 import { UserBid } from "./UserBid";
 import { IUser } from "./user_interface";
+import { Category } from "./category";
+import { ImageModel } from "./imageModel";
 
 export class SaleItem {
-    itemId: number;
+    saleId: number;
     seller: IUser;
-    imageUrl: string;
-    currentBid?: UserBid;
-    minimumBidPrice: number;
+    itemImg: ImageModel;
+    currentBid: UserBid;
+    minPrice: number;
+    endDate: string;
     title: string;
     description: string;
+    category: Category;
 
-
-    constructor(itemId: number, seller: IUser, imageUrl: string,
-        minimumBidPrice: number, title: string,
-        description: string, currentBid?: UserBid) {
-        this.itemId = itemId;
+    constructor(saleId: number, seller: IUser, itemImg: ImageModel,
+        currentBid: UserBid, minPrice: number, endDate: string,
+        title: string, description: string, category: Category) {
+        this.saleId = saleId;
         this.seller = seller;
-        this.imageUrl = imageUrl;
+        this.itemImg = itemImg;
         this.currentBid = currentBid;
-        this.minimumBidPrice = minimumBidPrice;
+        this.minPrice = minPrice;
+        this.endDate = endDate;
         this.title = title;
         this.description = description;
+        this.category = category;
     }
 
     getCurrentBidPrice(): number {
-        return this.currentBid ? this.currentBid.currentBidPrice : this.minimumBidPrice
+        return this.currentBid.currentBidPrice;
     }
 }
