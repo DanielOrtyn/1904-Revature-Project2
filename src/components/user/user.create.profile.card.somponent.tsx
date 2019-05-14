@@ -138,7 +138,7 @@ export class UserNewCardComponent extends React.Component<IUserCardProps, ITempS
       },
       body: JSON.stringify(sendObj)
     });
-    console.log(resp);
+    console.log(resp.json());
   }
 
   render() {
