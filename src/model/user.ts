@@ -1,3 +1,5 @@
+import { Img } from "./Img";
+
 export class User {
   userId: number;
   username: string;
@@ -5,9 +7,9 @@ export class User {
   name: string;
   email: string;
   postal: string;
-  img: string;
+  img: Img;
 
-  constructor(userId = 0, username = '', password = '', name = '', email='', postal='', img='') {
+  constructor(userId = 0, username = '', password = '', name = '', email='', postal='', img:Img) {
     this.userId = userId;
     this.username = username;
     this.password = password;
