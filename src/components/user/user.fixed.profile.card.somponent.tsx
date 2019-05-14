@@ -16,7 +16,7 @@ interface IUserCardProps
           <table>
               <tr>
                 <td>
-                    <img src={this.props.TheUser.img}
+                    <img src={this.props.TheUser.img.url}
                         className="card-img-top"
                         alt="..." />
                     <h5 className="card-title">{myuser.name}</h5>

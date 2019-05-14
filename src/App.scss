@@ -62,7 +62,14 @@ $screen-xl-min: 1200px;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.FixedCardImg{
+  width: 20em;
+  height: 20em;
+}
+.arrow{
+  width: 5em;
+  height: 2.5em;
+}
 .App-link {
   color: #61dafb;
 }
@@ -82,7 +89,11 @@ $screen-xl-min: 1200px;
   align-items: center;
 }
 
-
+.centered{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 /*****************************
   NAV
 *****************************/

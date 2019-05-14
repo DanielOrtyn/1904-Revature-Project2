@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import RevLogo from '../../assets/rev-logo.png';
-import { IClickerState, IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { User } from '../../model/user';
+import { IUserState, IState } from '../../reducers';
 
 interface INaveProps {
-    clicker: IClickerState,
     currentUser?: User
 }
 
@@ -62,7 +61,6 @@ export class NavComponent extends React.PureComponent<INaveProps> {
 
 const mapStateToProps = (state: IState) => {
     return {
-        clicker: state.clicker,
         currentUser: state.auth.currentUser
     }
 }

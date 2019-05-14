@@ -1,5 +1,5 @@
 import React from 'react';
-import { IAuthState, IState } from '../../reducers';
+import { IUserState, IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { login } from '../../actions/auth.actions';
 import { RouteComponentProps } from 'react-router';
@@ -10,7 +10,7 @@ interface ISignInState {
 }
 
 interface ISignInProps extends RouteComponentProps<{}>{
-  auth: IAuthState
+  auth: IUserState
   login: (username: string, password: string, history: any) => void
 }
 
