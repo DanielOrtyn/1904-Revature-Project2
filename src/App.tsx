@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import { store } from './Store';
 import { UserInfoComponent } from './components/user/user.info.page.component';
 import { SaleItemComponent } from './components/saleitem/saleitem.component';
-import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
+// import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
 import { CreateUserInfoComponent } from './components/user/user.create.page.component';
 
 const App: React.FC = () => {
@@ -23,7 +23,7 @@ const App: React.FC = () => {
             <Route path="/sign-in" component={SignInComponent} />
             <Route path="/user-info" component={UserInfoComponent}/>
             <Route path="/saleitemtest" component={SaleItemComponent}/>
-            <Route path="/saleitemList" component={SaleItemCategoryListComponent}/>
+            {/* <Route path="/saleitemList" component={SaleItemCategoryListComponent}/> */}
             <Route path="/create-user" component={CreateUserInfoComponent}/>
             <Route component={HomeComponent} />
           </Switch>
