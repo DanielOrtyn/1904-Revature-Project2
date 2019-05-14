@@ -14,8 +14,15 @@ interface IUserProps {
 export class UserInfoComponent extends React.Component<IUserProps, UserState> {
   constructor(props){
     super(props);
-    if(this.props.currentUser != undefined){
-      this.state={
+    console.log(this.props.currentUser)
+    if(this.props.currentUser == null){
+      this.state = {
+        currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com", "Number Street, City, State, Zip", new Img(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Base"))
+      }
+    }
+    else{
+      this.state = {
+
         currentUser: this.props.currentUser
       }
     }
@@ -26,10 +33,6 @@ export class UserInfoComponent extends React.Component<IUserProps, UserState> {
     }
     console.log("showing user");
     console.log(this.props.currentUser);
-  }
-  componentDidMount(){
-    // update the user here
-    
   }
   render() {
     return (
@@ -44,7 +47,8 @@ export class UserInfoComponent extends React.Component<IUserProps, UserState> {
 
 const mapStateToProps = (state: IState) => {
   return {
-    currentUser: state.auth.currentUser
+
+      currentUser: state.auth.currentUser
 
   }
 }

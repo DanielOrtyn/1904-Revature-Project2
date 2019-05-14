@@ -35,8 +35,10 @@ export class NavComponent extends React.PureComponent<INaveProps> {
                         </li>
                         {
                             currentUser
-                                ? 
-                                <li className="nav-item active dropdown">
+
+
+                                ? <li className="nav-item active dropdown">
+
                                 <div className="nav-link dropdown-toggle pointer" id="examples-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Options</div>
                                 <div className="dropdown-menu" aria-labelledby="examples-dropdown">
                                     <div className="dropdown-item"><Link to="/user-info" className="unset-anchor nav-link">View Myself</Link></div>
