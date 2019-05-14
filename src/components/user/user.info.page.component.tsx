@@ -3,6 +3,7 @@ import { UserCardComponent } from './user.fixed.profile.card.somponent';
 import { User } from '../../model/user';
 import { IState } from '../../reducers';
 import { connect } from 'react-redux';
+import { Img } from '../../model/Img';
 
 interface UserState{
   currentUser: User;
@@ -12,7 +13,7 @@ export class UserInfoComponent extends React.Component<any, UserState> {
   constructor(props){
     super(props);
     this.state = {
-      currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com", "Number Street, City, State, Zip", "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg")
+      currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com", "Number Street, City, State, Zip", new Img(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Base"))
     }
   }
   componentDidMount(){

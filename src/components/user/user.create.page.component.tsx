@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { User } from '../../model/user';
+
 import { IState, IUserState } from '../../reducers';
 import { update } from '../../actions/user.actions';
 import { UserNewCardComponent } from './user.create.profile.card.somponent';
-import { async } from 'q';
+
 
 interface UserProps{
   uState: IUserState;
