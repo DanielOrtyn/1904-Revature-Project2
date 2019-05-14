@@ -40,11 +40,14 @@ export class SignInComponent extends React.Component<ISignInProps, ISignInState>
       password: event.target.value
     })
   }
-
+  sendToCreate = ()=>{
+    this.props.history.push("/create-user");
+  }
   render() {
     const { username, password } = this.state;
     const errorMessage = this.props.auth.errorMessage;
     return (
+      <div>
       <form className="form-signin" onSubmit={this.submit}>
         <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
         <label htmlFor="inputUsername" className="sr-only">Username</label>
@@ -58,8 +61,11 @@ export class SignInComponent extends React.Component<ISignInProps, ISignInState>
           required value={password} onChange={this.updatePassword} />
 
         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        
         <p id="login-error">{errorMessage}</p>
       </form>
+      <button className="btn btn-sm btn-primary btn-block" onClick={this.sendToCreate}>Create Account</button>
+      </div>
     );
   }
 }

@@ -6,8 +6,7 @@ import { User } from "../../model/user";
 
 
 
-interface IUserCardProps{
-}
+
 
 interface ITempState{
   name: string;
@@ -22,7 +21,7 @@ interface ITempState{
   defaults: Array<any>
 }
  
-export class UserNewCardComponent extends React.Component<IUserCardProps, ITempState> {
+export class UserNewCardComponent extends React.Component<any, ITempState> {
   constructor(props){
     super(props);
     this.state = {
@@ -139,6 +138,7 @@ export class UserNewCardComponent extends React.Component<IUserCardProps, ITempS
       body: JSON.stringify(sendObj)
     });
     console.log(resp.json());
+    this.props.history.push("/sign-in");
   }
 
   render() {
