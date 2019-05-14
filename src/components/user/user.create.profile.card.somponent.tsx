@@ -158,8 +158,8 @@ export class UserNewCardComponent extends React.Component<IUserCardProps, ITempS
                     {this.state.defaults[1] != undefined && 
                       <tr>
                        
-                        <td><img className="arrow" onMouseOver={this.hoverOnLeft} onMouseOut={this.hoverOffLeft} onClick={this.handleDecriment} src={this.state.leftArrow}></img></td>
-                        <td><img className="arrow" onMouseOver={this.hoverOnRight} onMouseOut={this.hoverOffRight} onClick={this.handleIncriment} src={this.state.rightArrow}></img></td>
+                        <td><img className="arrow centered" onMouseOver={this.hoverOnLeft} onMouseOut={this.hoverOffLeft} onClick={this.handleDecriment} src={this.state.leftArrow}></img></td>
+                        <td><img className="arrow centered" onMouseOver={this.hoverOnRight} onMouseOut={this.hoverOffRight} onClick={this.handleIncriment} src={this.state.rightArrow}></img></td>
                        
                         </tr>
                     }
