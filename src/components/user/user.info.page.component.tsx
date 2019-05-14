@@ -26,11 +26,6 @@ export class UserInfoComponent extends React.Component<IUserProps, UserState> {
         currentUser: this.props.currentUser
       }
     }
-    else{
-      this.state={
-        currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com", "Number Street, City, State, Zip", new Img(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Base"))
-      }
-    }
     console.log("showing user");
     console.log(this.props.currentUser);
   }
