@@ -1,8 +1,8 @@
 import React from 'react';
 import { IUserState, IState } from '../../reducers';
 import { connect } from 'react-redux';
-import { login } from '../../actions/auth.actions';
 import { RouteComponentProps } from 'react-router';
+import { login } from '../../actions/user.actions';
 
 interface ISignInState {
   username: string;
