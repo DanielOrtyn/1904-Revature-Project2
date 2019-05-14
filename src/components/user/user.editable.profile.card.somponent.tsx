@@ -52,7 +52,7 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
 
   updateUser = () => {
     console.log("Calling Parent Update Function ");
-    let passUser = new User(this.props.TheUser.userId, this.state.username, this.state.password, this.state.name, this.state.email, this.state.postal, this.props.TheUser.img);
+    let passUser = new User(this.props.TheUser.userId, this.state.username, this.state.password, this.state.name, this.state.email, this.state.postal, this.props.TheUser.profileImg);
     this.props.updateFunction(passUser);
   }
 
@@ -65,8 +65,8 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
             <tbody>
               <tr>
                 <td>
-                  <img src={this.props.TheUser.img.url}
-                      className="card-img-top"
+                  <img src={this.props.TheUser.profileImg.url}
+                      className="card-img-top "
                       alt="..." />
                   <h5 className="card-title">{myuser.name}</h5>
                 </td>

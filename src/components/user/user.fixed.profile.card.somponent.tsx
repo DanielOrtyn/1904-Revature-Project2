@@ -10,14 +10,18 @@ interface IUserCardProps
   export class UserCardComponent extends React.PureComponent<IUserCardProps> {
     render() {
       const myuser = this.props.TheUser;
+      {
+        console.log(this.props.TheUser);
+        console.log("this was in the card");
+      }
       return (
-        <div key={'User-' + myuser.userId} className="card col-sm-2 col-md-6 col-sm-12">
-          <div className="card-body">
+        <div key={'User-' + myuser.userId} className="">
+          <div className="">
           <table>
             <tbody>
               <tr>
                 <td>
-                    <img src={this.props.TheUser.img.url}
+                    <img src={this.props.TheUser.profileImg.url}
                         className="card-img-top"
                         alt="..." />
                     <h5 className="card-title">{myuser.name}</h5>
