@@ -14,6 +14,7 @@ interface IUserCardProps
         <div key={'User-' + myuser.userId} className="card col-sm-2 col-md-6 col-sm-12">
           <div className="card-body">
           <table>
+            <tbody>
               <tr>
                 <td>
                     <img src={this.props.TheUser.img.url}
@@ -31,6 +32,7 @@ interface IUserCardProps
                     </ul>
                 </td>
             </tr>
+            </tbody>
           </table>
           </div>
           <br>
