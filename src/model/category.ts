@@ -1,5 +1,6 @@
+import { IDisplayName } from "./IDisplayName";
 
-export class Category {
+export class Category implements IDisplayName{
     categoryId: number;
     name: string;
 
@@ -7,5 +8,9 @@ export class Category {
     constructor(categoryId: number, name: string) {
         this.categoryId = categoryId;
         this.name = name;
+    }
+
+    displayName() {
+        return this.name;
     }
 }
