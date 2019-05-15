@@ -11,7 +11,7 @@ import  UserInfoComponent  from './components/user/user.info.page.component';
 import { SaleItemComponent } from './components/saleitem/saleitem.component';
 import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
 import { CreateUserInfoComponent } from './components/user/user.create.page.component';
-import { SignOutComponent } from './components/sign-in/sign-out.component';
+import SignOutComponent from './components/sign-in/sign-out.component';
 
 const App: React.FC = () => {
   return (

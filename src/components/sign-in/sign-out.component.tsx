@@ -2,8 +2,7 @@ import React from 'react';
 import { IUserState, IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { login, logout } from '../../actions/user.actions';
-import { async } from 'q';
+import { logout } from '../../actions/user.actions';
 
 interface ISignOutState {
   username: string;
@@ -12,24 +11,30 @@ interface ISignOutState {
 
 interface ISignOutProps extends RouteComponentProps<{}>{
   auth: IUserState
-  logout: (history: any) => void
+  logout: () => void
 }
 
 export class SignOutComponent extends React.Component<ISignOutProps, ISignOutState> {
   constructor(props) {
     super(props);
   }
-  onMount = async(event) => {
-    event.preventDefault();
-    await logout(this.props.history);
+
+  componentWillMount= async()=>{
+    await this.props.logout();
     console.log("testing user");
-    if(this.props.auth != undefined) console.log(this.props.auth.currentUser);
+    if(this.props.auth != undefined){
+      console.log("User Logged Out");
+      this.props.history.push("/sign-in");
+    } 
+    else{
+      console.log(this.props.auth);
+      this.props.history.push("/user-info");
+    }
   }
   render() {
     return (
       <div>
-        <h1>Unable To Log Out, An Error Has Occured</h1>
-        <img onLoad={this.onMount} src="https://media.giphy.com/media/Kq3y54eJnoPja/giphy.gif"></img>
+        
       </div>
     );
   }

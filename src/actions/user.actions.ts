@@ -53,7 +53,7 @@ export const update = (newUser: User) => async (dispatch) => {
     })
 }
 
-export const logout = (history: any) => async(dispatch) => {
+export const logout = () => async(dispatch) => {
     dispatch({
         type: userTypes.LOG_OUT
     })
