@@ -7,17 +7,17 @@ export class User {
     name: string;
     email: string;
     postal: string;
-    profileImage: ImageModel;
+    profileImg: ImageModel;
 
     constructor(userId = 0, username = '', password = '', name = '',
-     email = '', postal = '', profileImage: ImageModel) {
+     email = '', postal = '', profileImg: ImageModel) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.postal = postal;
-        this.profileImage = profileImage;
+        this.profileImg = profileImg;
     }
 
     static constructViaObject(any): User {
@@ -25,6 +25,6 @@ export class User {
             return any;
         }
         return new User(any.userId, any.username, any.password,
-            any.name, any.email, any.postal, any.profileImage);
+            any.name, any.email, any.postal, any.profileImg);
     }
 }

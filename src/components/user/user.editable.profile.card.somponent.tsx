@@ -65,7 +65,7 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
             <tbody>
               <tr>
                 <td>
-                  <img src={this.props.TheUser.profileImage.url}
+                  <img src={this.props.TheUser.profileImg.url}
                       className="card-img-top"
                       alt="..." />
                   <h5 className="card-title">{myuser.name}</h5>
