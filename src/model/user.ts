@@ -1,4 +1,4 @@
-import { Img } from "./Img";
+import { ImageModel } from "./imageModel";
 
 export class User {
     userId: number;
@@ -7,16 +7,17 @@ export class User {
     name: string;
     email: string;
     postal: string;
-    img: Img;
+    profileImage: ImageModel;
 
-    constructor(userId = 0, username = '', password = '', name = '', email = '', postal = '', img: Img) {
+    constructor(userId = 0, username = '', password = '', name = '',
+     email = '', postal = '', profileImage: ImageModel) {
         this.userId = userId;
         this.username = username;
         this.password = password;
         this.name = name;
         this.email = email;
         this.postal = postal;
-        this.img = img;
+        this.profileImage = profileImage;
     }
 
     static constructViaObject(any): User {
@@ -24,6 +25,6 @@ export class User {
             return any;
         }
         return new User(any.userId, any.username, any.password,
-            any.name, any.email, any.postal, any.img);
+            any.name, any.email, any.postal, any.profileImage);
     }
 }

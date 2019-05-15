@@ -3,7 +3,7 @@ import { UserCardComponent } from './user.fixed.profile.card.somponent';
 import { User } from '../../model/user';
 import { IState } from '../../reducers';
 import { connect } from 'react-redux';
-import { Img } from '../../model/Img';
+import { ImageModel } from '../../model/imageModel';
 
 interface UserState{
   currentUser: User;
@@ -17,7 +17,9 @@ export class UserInfoComponent extends React.Component<IUserProps, UserState> {
     console.log(this.props.currentUser)
     if(this.props.currentUser == null){
       this.state = {
-        currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com", "Number Street, City, State, Zip", new Img(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Base"))
+        currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com",
+         "Number Street, City, State, Zip",
+          new ImageModel(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Base"))
       }
     }
     else{
