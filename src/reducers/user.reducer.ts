@@ -33,7 +33,7 @@ export const userReducer = (state = initialState, action) => {
     case userTypes.LOG_OUT:
       return {
         ...state,
-        currentUser: null
+        currentUser: undefined
       }
     default:
 

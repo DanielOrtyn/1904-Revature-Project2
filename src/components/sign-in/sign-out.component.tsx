@@ -19,7 +19,8 @@ export class SignOutComponent extends React.Component<ISignOutProps, ISignOutSta
   constructor(props) {
     super(props);
   }
-  componentWillMount = async() => {
+  onMount = async(event) => {
+    event.preventDefault();
     await logout(this.props.history);
     console.log("testing user");
     if(this.props.auth != undefined) console.log(this.props.auth.currentUser);
@@ -27,7 +28,8 @@ export class SignOutComponent extends React.Component<ISignOutProps, ISignOutSta
   render() {
     return (
       <div>
-        <h1>Logged Out</h1>
+        <h1>Unable To Log Out, An Error Has Occured</h1>
+        <img onLoad={this.onMount} src="https://media.giphy.com/media/Kq3y54eJnoPja/giphy.gif"></img>
       </div>
     );
   }
