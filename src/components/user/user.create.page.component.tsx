@@ -16,7 +16,9 @@ export class CreateUserInfoComponent extends React.Component<UserProps, {}> {
   constructor(props){
     super(props);
   }
-
+  componentWillMount(){
+    
+  }
   render() {
     return (
       <div className="centered">

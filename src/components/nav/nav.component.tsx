@@ -10,6 +10,11 @@ interface INaveProps {
 }
 
 export class NavComponent extends React.PureComponent<INaveProps> {
+
+    componentDidMount(){
+        console.log("in the nav bar " + this.props.currentUser );
+    }
+
     render() {
         const currentUser = this.props.currentUser;
         return (
@@ -30,22 +35,21 @@ export class NavComponent extends React.PureComponent<INaveProps> {
                         </li>
                         {
                             currentUser
-                                ? <li className="nav-item active">
-                                    <Link to="/sign-in" className="unset-anchor nav-link">Sign Out</Link>
+
+
+                                ? <li className="nav-item active dropdown">
+
+                                <div className="nav-link dropdown-toggle pointer" id="examples-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Options</div>
+                                <div className="dropdown-menu" aria-labelledby="examples-dropdown">
+                                    <div className="dropdown-item"><Link to="/user-info" className="unset-anchor nav-link">View Myself</Link></div>
+                                    <div className="dropdown-item"><Link to="/sign-in" className="unset-anchor nav-link">Sign Out</Link></div>
+                                </div>
                                 </li>
-                                : <li className="nav-item active">
+                                : 
+                                <li className="nav-item active">
                                     <Link to="/sign-in" className="unset-anchor nav-link">Sign In</Link>
                                 </li>
                         }
-                        <li className="nav-item active dropdown">
-                            <div className="nav-link dropdown-toggle pointer" id="examples-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Examples</div>
-                            <div className="dropdown-menu" aria-labelledby="examples-dropdown">
-                                <div className="dropdown-item"><Link to="/home" className="unset-anchor nav-link active">Example</Link></div>
-                            </div>
-                        </li>
-                        <li className="nav-item active">
-                            <Link to="/nested" className="unset-anchor nav-link">Nested</Link>
-                        </li>
                         <li className="nav-item active">
                             <Link to="/saleitemtest" className="unset-anchor nav-link">SaleItem</Link>
                         </li>
