@@ -1,8 +1,8 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { Img } from "../../model/Img";
 import { async, send } from "q";
 import { User } from "../../model/user";
+import { ImageModel } from "../../model/imageModel";
 
 
 
@@ -15,7 +15,7 @@ interface ITempState{
   email: string;
   postal: string;
   imgSelected: number;
-  userImg: Img,
+  userImg: ImageModel,
   leftArrow: string,
   rightArrow: string,
   defaults: Array<any>
@@ -31,7 +31,7 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
       email: "",
       postal: "",
       imgSelected: 0,
-      userImg: new Img(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Default"),
+      userImg: new ImageModel(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Default"),
       leftArrow: "https://i.imgur.com/dxMcYXC.png",
       rightArrow: "https://i.imgur.com/ge1gA3i.png",
       defaults: new Array()
@@ -49,7 +49,7 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
         });
         let newBod = resp.json();
         newBod.then(function(results){
-          let newImg = new Img(results.imgId, results.url, results.title);
+          let newImg = new ImageModel(results.imgId, results.url, results.title);
           Ndefaults.push(newImg);
         });
     }
@@ -121,7 +121,7 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
       rating: 5,
       ratingCount: 1,
       profileImg: {
-        imgId: this.state.userImg.imgID,
+        imgId: this.state.userImg.imgId,
         url: this.state.userImg.url,
         title: this.state.userImg.title
       }

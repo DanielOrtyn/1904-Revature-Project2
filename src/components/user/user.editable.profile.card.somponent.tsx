@@ -52,7 +52,7 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
 
   updateUser = () => {
     console.log("Calling Parent Update Function ");
-    let passUser = new User(this.props.TheUser.userId, this.state.username, this.state.password, this.state.name, this.state.email, this.state.postal, this.props.TheUser.profileImg);
+    let passUser = User.constructViaObject(this.props.TheUser);
     this.props.updateFunction(passUser);
   }
 

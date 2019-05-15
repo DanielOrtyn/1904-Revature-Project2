@@ -3,18 +3,13 @@ import { Link } from 'react-router-dom';
 import RevLogo from '../../assets/rev-logo.png';
 import { connect } from 'react-redux';
 import { User } from '../../model/user';
-import { IUserState, IState } from '../../reducers';
+import { IState } from '../../reducers';
 
 interface INaveProps {
     currentUser?: User
 }
 
 export class NavComponent extends React.PureComponent<INaveProps> {
-
-    componentDidMount(){
-        console.log("in the nav bar " + this.props.currentUser );
-    }
-
     render() {
         const currentUser = this.props.currentUser;
         return (

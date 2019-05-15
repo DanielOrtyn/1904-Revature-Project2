@@ -1,11 +1,11 @@
 import { UserBid } from "./UserBid";
-import { IUser } from "./user_interface";
 import { Category } from "./category";
 import { ImageModel } from "./imageModel";
+import { User } from "./user";
 
 export class SaleItem {
     saleId: number;
-    seller: IUser;
+    seller: User;
     itemImg: ImageModel;
     currentBid: UserBid;
     minPrice: number;
@@ -14,7 +14,7 @@ export class SaleItem {
     description: string;
     category: Category;
 
-    constructor(saleId: number, seller: IUser, itemImg: ImageModel,
+    constructor(saleId: number, seller: User, itemImg: ImageModel,
         currentBid: UserBid, minPrice: number, endDate: string,
         title: string, description: string, category: Category) {
         this.saleId = saleId;
@@ -26,6 +26,16 @@ export class SaleItem {
         this.title = title;
         this.description = description;
         this.category = category;
+    }
+
+    static constructViaObject(any): SaleItem {
+        if (any) {
+            return any;
+        }
+        return new SaleItem(any.saleId, User.constructViaObject(any.seller),
+        ImageModel.constructViaObject(any.itemImg), UserBid.constructViaObject(any.currentBid),
+        any.minPrice, any.endDate, any.title, any.description,
+        Category.constructViaObject(any.category));
     }
 
     getCurrentBidPrice(): number {

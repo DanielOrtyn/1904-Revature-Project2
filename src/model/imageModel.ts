@@ -9,4 +9,11 @@ export class ImageModel {
         this.url = url;
         this.title = title;
     }
+
+    static constructViaObject(any): ImageModel {
+        if (any) {
+            return any;
+        }
+        return new ImageModel(any.imgId, any.url, any.title);
+    }
 }
