@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import RevLogo from '../../assets/rev-logo.png';
 import { connect } from 'react-redux';
 import { User } from '../../model/user';
-import { IUserState, IState } from '../../reducers';
+import { IState } from '../../reducers';
 
 interface INaveProps {
     currentUser?: User

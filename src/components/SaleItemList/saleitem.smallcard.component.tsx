@@ -8,9 +8,6 @@ interface ISmallSaleItemComponentProps {
 
 export class SmallSaleItemComponent extends React.PureComponent<ISmallSaleItemComponentProps> {
 
-    constructor(props: any) {
-        super(props);
-    }
     renderItemLoadFailedComponent() {
         return (<p>Warning, Item Did Not Load</p>);
     }

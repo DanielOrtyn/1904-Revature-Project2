@@ -74,9 +74,7 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
         }
         this.setState({
             saleItemList: listOfItems.map(item =>
-                new SaleItem(item.saleId, item.seller, item.itemImg,
-                    item.currentBid, item.minPrice, item.endDate,
-                    item.title, item.description, item.category))
+                SaleItem.constructViaObject(item))
         });
     }
 

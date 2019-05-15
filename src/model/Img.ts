@@ -8,4 +8,11 @@ export class Img{
         this.url = url;
         this.title = title;
     }
+
+    static constructViaObject(any): Img {
+        if (any) {
+            return any;
+        }
+        return new Img(any.imgId, any.url, any.title);
+    }
 }
