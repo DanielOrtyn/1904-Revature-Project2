@@ -21,7 +21,7 @@ interface IUserCardProps
             <tbody>
               <tr>
                 <td>
-                    <img src={this.props.TheUser.profileImg.url}
+                    <img src={this.props.TheUser.img.url}
                         className="FixedCardImage"
                         alt="..." />
                     <h5 className="card-title">{myuser.name}</h5>

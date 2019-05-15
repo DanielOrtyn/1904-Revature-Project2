@@ -26,14 +26,18 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
     }
 
     changeCategoryShown = (newCategory: IDisplayName) => {
-        if(newCategory && newCategory instanceof Category)
-        this.setState({
-            categoryShown: newCategory
-        });
+        if (newCategory && newCategory instanceof Category) {
+            console.log("change cate");
+            console.log(this.state.categoryShown.name);
+            this.setState({
+                categoryShown: newCategory
+            });
+            this.fetchCategorySaleItemList(newCategory);
+        }
     }
 
     componentDidMount = async () => {
-        this.fetchCategorySaleItemList();
+        this.fetchCategorySaleItemList(this.state.categoryShown);
         this.fetchListOfCategories();
     }
 
@@ -52,9 +56,11 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
         });
     }
 
-    fetchCategorySaleItemList = async () => {
+    fetchCategorySaleItemList = async (newCategory: Category) => {
         let listOfItems: SaleItem[] = [];
-        if (this.state.categoryShown.name === 'All' || this.state.categoryShown.categoryId < 1) {
+        if (newCategory.name === 'All' ||
+            newCategory.categoryId < 1) {
+            console.log("get all cate");
             const resp = await fetch(environment.context + '/SaleItem', {
                 method: 'GET',
                 credentials: 'include'
@@ -62,10 +68,11 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
             listOfItems = await resp.json();
         }
         else {
+            console.log("get only one ");
             const resp = await fetch(environment.context + '/SaleItem/category', {
                 method: 'POST',
                 credentials: 'include',
-                body: JSON.stringify(this.state.categoryShown),
+                body: JSON.stringify(newCategory),
                 headers: {
                     'content-type': 'application/json'
                 }

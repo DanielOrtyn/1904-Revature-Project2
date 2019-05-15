@@ -10,11 +10,6 @@ interface INaveProps {
 }
 
 export class NavComponent extends React.PureComponent<INaveProps> {
-
-    componentDidMount(){
-        console.log("in the nav bar " + this.props.currentUser );
-    }
-
     render() {
         const currentUser = this.props.currentUser;
         return (
