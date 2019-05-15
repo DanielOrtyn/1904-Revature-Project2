@@ -1,7 +1,5 @@
 import React from "react";
 import { Button } from "reactstrap";
-import { async, send } from "q";
-import { User } from "../../model/user";
 import { ImageModel } from "../../model/imageModel";
 
 
