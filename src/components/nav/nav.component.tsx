@@ -37,7 +37,7 @@ export class NavComponent extends React.PureComponent<INaveProps> {
                                 <div className="nav-link dropdown-toggle pointer" id="examples-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">User Options</div>
                                 <div className="dropdown-menu" aria-labelledby="examples-dropdown">
                                     <div className="dropdown-item"><Link to="/user-info" className="unset-anchor nav-link">View Myself</Link></div>
-                                    <div className="dropdown-item"><Link to="/sign-in" className="unset-anchor nav-link">Sign Out</Link></div>
+                                    <div className="dropdown-item"><Link to="/sign-out" className="unset-anchor nav-link">Sign Out</Link></div>
                                 </div>
                                 </li>
                                 : 

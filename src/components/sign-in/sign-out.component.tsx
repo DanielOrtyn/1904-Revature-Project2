@@ -2,7 +2,8 @@ import React from 'react';
 import { IUserState, IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { login } from '../../actions/user.actions';
+import { login, logout } from '../../actions/user.actions';
+import { async } from 'q';
 
 interface ISignOutState {
   username: string;
@@ -11,23 +12,22 @@ interface ISignOutState {
 
 interface ISignOutProps extends RouteComponentProps<{}>{
   auth: IUserState
-  login: (username: string, password: string, history: any) => void
+  logout: (history: any) => void
 }
 
 export class SignOutComponent extends React.Component<ISignOutProps, ISignOutState> {
   constructor(props) {
     super(props);
-    this.state = {
-      username: '',
-      password: ''
-    };
   }
-
+  componentWillMount = async() => {
+    await logout(this.props.history);
+    console.log("testing user");
+    if(this.props.auth != undefined) console.log(this.props.auth.currentUser);
+  }
   render() {
-    const { username, password } = this.state;
-    const errorMessage = this.props.auth.errorMessage;
     return (
       <div>
+        <h1>Logged Out</h1>
       </div>
     );
   }
@@ -40,7 +40,7 @@ const mapStateToProps = (state: IState) => {
 }
 
 const mapDispatchToProps = {
-  login: login
+  logout: logout
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignOutComponent);

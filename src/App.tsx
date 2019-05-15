@@ -11,6 +11,7 @@ import  UserInfoComponent  from './components/user/user.info.page.component';
 import { SaleItemComponent } from './components/saleitem/saleitem.component';
 import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
 import { CreateUserInfoComponent } from './components/user/user.create.page.component';
+import { SignOutComponent } from './components/sign-in/sign-out.component';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
             <Route path="/saleitemtest" component={SaleItemComponent}/>
             <Route path="/saleitemList" component={SaleItemCategoryListComponent}/>
             <Route path="/create-user" component={CreateUserInfoComponent}/>
+            <Route path="/sign-out" component={SignOutComponent}/>
             <Route component={HomeComponent} />
           </Switch>
         </div>

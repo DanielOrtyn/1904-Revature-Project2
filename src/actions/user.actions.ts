@@ -5,7 +5,8 @@ export const userTypes = {
     INVALID_CREDENTIALS: 'INVALID_CREDENTIALS',
     FAILED_TO_LOGIN: 'FAILED_TO_LOGIN',
     LOGGED_IN: 'LOGGED_IN',
-    CHANGE_USER_FEILD: "CHANGE_USER"
+    CHANGE_USER_FEILD: "CHANGE_USER",
+    LOG_OUT: "LOG_OUT"
 }
 
 export const login = (username: string, password: string, history: any) => async (dispatch) => {
@@ -49,5 +50,11 @@ export const update = (newUser: User) => async (dispatch) => {
             user: newUser
         },
         type: userTypes.CHANGE_USER_FEILD
+    })
+}
+
+export const logout = (history: any) => async(dispatch) => {
+    dispatch({
+        type: userTypes.LOG_OUT
     })
 }
