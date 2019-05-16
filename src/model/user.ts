@@ -8,9 +8,11 @@ export class User {
     email: string;
     postal: string;
     profileImg: ImageModel;
+    rating: number;
+    ratingCount: number;
 
     constructor(userId = 0, username = '', password = '', name = '',
-     email = '', postal = '', profileImg: ImageModel) {
+     email = '', postal = '', profileImg: ImageModel, rating: number, ratingCount: number) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -18,6 +20,8 @@ export class User {
         this.email = email;
         this.postal = postal;
         this.profileImg = profileImg;
+        this.rating = rating;
+        this.ratingCount = ratingCount;
     }
 
     static constructViaObject(any): User {
@@ -25,6 +29,6 @@ export class User {
             return any;
         }
         return new User(any.userId, any.username, any.password,
-            any.name, any.email, any.postal, any.profileImg);
+            any.name, any.email, any.postal, any.profileImg, any.rating, any.ratingCount);
     }
 }

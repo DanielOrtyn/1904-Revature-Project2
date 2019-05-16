@@ -10,22 +10,12 @@ interface UserProps {
     update: (newUser: User) => void;
 }
 export class EditUserInfoComponent extends React.Component<UserProps, {}> {
-
-    updateUser = (newUser: User) => {
-        console.log("Updating User State")
-        this.props.update(newUser);
-        console.log(this.props.uState.currentUser);
-    }
-
     render() {
         return (
             <div>
                 <h1>Edit User Info Page</h1>
-                <>
                     {this.props.uState.currentUser != undefined &&
-                        <UserEditCardComponent TheUser={this.props.uState.currentUser}
-                            updateFunction={this.updateUser}></UserEditCardComponent>}
-                </>
+                        <UserEditCardComponent TheUser={this.props.uState.currentUser} update={this.props.update}></UserEditCardComponent>}
             </div>
         );
     }

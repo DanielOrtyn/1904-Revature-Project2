@@ -12,6 +12,7 @@ import { SaleItemComponent } from './components/saleitem/saleitem.component';
 import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
 import { CreateUserInfoComponent } from './components/user/user.create.page.component';
 import SignOutComponent from './components/sign-in/sign-out.component';
+import EditUserInfoComponent from './components/user/user.edit.page.component';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/create-user" component={CreateUserInfoComponent}/>
             <Route path="/sign-out" component={SignOutComponent}/>
             <Route path="/sale-page" component={SaleItemComponent}/>
+            <Route path="/edit-user" component={EditUserInfoComponent}/>
             <Route component={HomeComponent} />
           </Switch>
         </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "reactstrap";
 import { ImageModel } from "../../model/imageModel";
+import { Redirect } from "react-router";
 
 
 
@@ -16,7 +17,8 @@ interface ITempState{
   userImg: ImageModel,
   leftArrow: string,
   rightArrow: string,
-  defaults: Array<any>
+  defaults: Array<any>,
+  editNow: boolean
 }
  
 export class UserNewCardComponent extends React.Component<any, ITempState> {
@@ -32,7 +34,8 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
       userImg: new ImageModel(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Default"),
       leftArrow: "https://i.imgur.com/dxMcYXC.png",
       rightArrow: "https://i.imgur.com/ge1gA3i.png",
-      defaults: new Array()
+      defaults: new Array(),
+      editNow: false
     }
     
     console.log(this.props);
@@ -136,13 +139,14 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
       body: JSON.stringify(sendObj)
     });
     console.log(resp.json());
-    this.props.history.push("/sign-in");
+    this.setState({editNow: true});
   }
 
   render() {
     return (
-      <div key={'Creating-User'} className="card col-sm-2 col-md-6 col-sm-12">
-        <div className="card-body">
+      <div key={'Creating-User'} className="col-sm-2 col-md-6 col-sm-12">
+      {this.state.editNow && <Redirect to='/sign-in' />}
+        <div className="">
           <table>
             <tbody>
               <tr>
@@ -150,7 +154,7 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
                   <img src={this.state.userImg.url}
                       className="FixedCardImg"
                       alt="..." />
-                  <h5 className="card-title centered">Select Picture</h5>
+                  <h5 className="centered">Select Picture</h5>
                   <table className="centered">
                     <tbody>
                     {this.state.defaults[1] != undefined && 
@@ -164,8 +168,8 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
                     </tbody>
                   </table>
                 </td>
-                <td className=" card-body">
-                  <ul className="card-body list-group list-group-flush">
+                <td className="FixedCardImage">
+                  <ul className="list-group list-group-flush">
                     <li className="list-group-item">Name<input defaultValue={(this.state.name).toString()} type='string' onChange={this.handleNameChange.bind(this)}></input></li>
                     <li className="list-group-item">Username<input defaultValue={(this.state.username).toString()} type='string' onChange={this.handleUsernameChange.bind(this)}></input></li>
                     <li className="list-group-item">Password<input defaultValue={(this.state.password).toString()} type='string' onChange={this.handlePasswordChange.bind(this)}></input></li>
