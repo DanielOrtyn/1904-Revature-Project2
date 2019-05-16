@@ -21,13 +21,10 @@ export class SignOutComponent extends React.Component<ISignOutProps, ISignOutSta
 
   componentWillMount= async()=>{
     await this.props.logout();
-    console.log("testing user");
     if(this.props.auth != undefined){
-      console.log("User Logged Out");
       this.props.history.push("/sign-in");
     } 
     else{
-      console.log(this.props.auth);
       this.props.history.push("/user-info");
     }
   }

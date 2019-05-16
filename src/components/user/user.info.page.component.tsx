@@ -14,7 +14,6 @@ interface IUserProps {
 export class UserInfoComponent extends React.Component<IUserProps, UserState> {
   constructor(props){
     super(props);
-    console.log(this.props.currentUser)
     if(this.props.currentUser == null){
       this.state = {
         currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com",
@@ -28,8 +27,6 @@ export class UserInfoComponent extends React.Component<IUserProps, UserState> {
         currentUser: this.props.currentUser
       }
     }
-    console.log("showing user");
-    console.log(this.props.currentUser);
   }
   render() {
     return (

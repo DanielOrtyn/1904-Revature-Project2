@@ -25,7 +25,6 @@ export class SignInComponent extends React.Component<ISignInProps, ISignInState>
 
   submit = async (event) => {
     event.preventDefault();
-    console.log('attempting to login');
     this.props.login(this.state.username, this.state.password, this.props.history);
   }
 

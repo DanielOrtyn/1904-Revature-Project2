@@ -63,10 +63,12 @@ $screen-xl-min: 1200px;
   color: white;
 }
 .FixedCardImg{
+  object-fit: contain;
   width: 20em;
   height: 20em;
 }
 .MixedCardImg{
+  object-fit: contain;
   width: 40em;
   height: 20em;
 }
@@ -77,7 +79,23 @@ $screen-xl-min: 1200px;
 .App-link {
   color: #61dafb;
 }
-
+.Collumx2 {
+  columns: 2 ;
+  margin-left: 10%;
+}
+.ItemCard {
+  margin-bottom: 10%;
+  display: flex;
+  page-break-inside: avoid;
+}
+.BuffyTheBuffer{
+  padding: 1em;
+}
+.SaleItemPicture{
+  object-fit: contain;
+  width: 10em;
+  height: 10em;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

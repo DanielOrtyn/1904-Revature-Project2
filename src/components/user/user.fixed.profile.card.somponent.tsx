@@ -24,10 +24,6 @@ interface IUserCardProps
     }
     render() {
       const myuser = this.props.TheUser;
-      {
-        console.log(this.props.TheUser);
-        console.log("this was in the card");
-      }
       return (
         <div key={'User-' + myuser.userId} className="">
         {this.state.editNow && <Redirect to='/edit-user' />}
@@ -44,7 +40,6 @@ interface IUserCardProps
                 <td>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">{this.props.TheUser.username}</li>
-                        <li className="list-group-item">{this.props.TheUser.password}</li>
                         <li className="list-group-item">{this.props.TheUser.email}</li>
                         <li className="list-group-item">{this.props.TheUser.postal}</li>
                         <li className="list-group-item"><Button className="btn btn-success" onClick={this.sendToEdit}>Edit Profile</Button></li>

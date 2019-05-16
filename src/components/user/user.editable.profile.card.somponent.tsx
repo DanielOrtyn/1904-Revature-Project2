@@ -100,7 +100,6 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
           body: JSON.stringify(imgObject)
         });
         let parsedResponse = await iresp.json();
-        let returnedImg = new ImageModel(parsedResponse.imgId, iresp.url, parsedResponse.title);
       //send user
         sendObj = {
           userId: this.props.TheUser.userId,

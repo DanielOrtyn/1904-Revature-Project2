@@ -22,7 +22,6 @@ export class SaleItemComponent extends React.PureComponent<ISaleItemComponentPro
     }
 
     renderItemComponent() {
-        console.log(this.props.item)
         if (this.props.item) {
             return (
                 <>

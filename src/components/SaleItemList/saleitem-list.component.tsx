@@ -19,11 +19,17 @@ export class SaleItemListComponent extends React.PureComponent<ISaleItemListComp
     render() {
         return (
             <>
-                {this.props.saleItemList.map(saleItem => (
-                    <SaleItemSmallCardComponent key={'saleItem-' + saleItem.saleId}
-                        saleItem={saleItem} history={this.props.history}
-                        location={this.props.location} match={this.props.match} />
-                ))}
+                <div className="BuffyTheBuffer">
+                    
+                
+                <div className="Collumx2">
+                    {this.props.saleItemList.map(saleItem => (
+                        <SaleItemSmallCardComponent key={'saleItem-' + saleItem.saleId}
+                            saleItem={saleItem} history={this.props.history}
+                            location={this.props.location} match={this.props.match} />
+                    ))}
+                </div>
+                </div>
             </>
         );
     }

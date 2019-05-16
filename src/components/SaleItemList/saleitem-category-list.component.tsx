@@ -74,7 +74,6 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
         if (this.state.categoryShown.name === 'All' ||
             this.state.categoryShown.categoryId < 1) {
             const path: string = '/SaleItem/search/active/text/' + this.state.searchText;
-            console.log(path);
             const resp = await fetch(environment.context + path, {
                 method: 'GET',
                 credentials: 'include'
@@ -114,10 +113,12 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
                     <TextInputComponent valueUpdate={this.updateSearchTerm} placeHolder='search' />
                     <button onClick={this.searchSaleItems}>Search</button>
                 </div>
-                {this.state.saleItemList.length &&
+                {this.state.saleItemList[1] &&
                     <SaleItemListComponent saleItemList={this.state.saleItemList}
                         history={this.props.history} location={this.props.location}
                         match={this.props.match} />}
+                {this.state.saleItemList[1] == undefined &&
+                    <h1>Loading...</h1>}
             </>
         );
     }

@@ -3,10 +3,6 @@ import { Button } from "reactstrap";
 import { ImageModel } from "../../model/imageModel";
 import { Redirect } from "react-router";
 
-
-
-
-
 interface ITempState{
   name: string;
   username: string;
@@ -37,9 +33,6 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
       defaults: new Array(),
       editNow: false
     }
-    
-    console.log(this.props);
-    console.log(this.state);
   }
   componentWillMount= async() =>{
     let Ndefaults = new Array;
@@ -59,23 +52,18 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
   handleNameChange(event){
     this.setState({name: event.target.value});
   }
-
   handleUsernameChange(event){
     this.setState({username: event.target.value});
   }
-
   handlePasswordChange(event){
     this.setState({password: event.target.value});
   }
-
   handleEmailChange(event){
     this.setState({email: event.target.value});
   }
-
   handlePostalChange(event){
     this.setState({postal: event.target.value});
   }
-
   handleIncriment = async() => {
     if(this.state.imgSelected < 9)this.setState({imgSelected: this.state.imgSelected+1});
     else{this.setState({imgSelected: 0})};
@@ -84,7 +72,6 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
       userImg: this.state.defaults[this.state.imgSelected]
     });
   }
-
   handleDecriment = () => {
     if(this.state.imgSelected > 0)this.setState({imgSelected: this.state.imgSelected-1});
     else{this.setState({imgSelected: 9})};
@@ -94,25 +81,19 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
     });
 
   }
-
   hoverOnLeft = (element) => {
     this.setState({leftArrow: "https://i.imgur.com/D0QAhl2.png"})
   }
-
   hoverOffLeft = (element) => {
     this.setState({leftArrow: "https://i.imgur.com/dxMcYXC.png"})
   }
-
   hoverOnRight = (element) => {
     this.setState({rightArrow: "https://i.imgur.com/rhiCg8m.png"})
   }
-
   hoverOffRight = (element) => {
     this.setState({rightArrow: "https://i.imgur.com/ge1gA3i.png"})
   }
   updateUser = async() => {
-    console.log("Calling Parent Update Function ");
-
     let sendObj = {
       username: this.state.username,
       password: this.state.password,
@@ -127,9 +108,6 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
         title: this.state.userImg.title
       }
     }
-    
-    console.log("SENDING THIS OBJECT");
-    console.log(sendObj);
     const resp = await fetch(`http://localhost:8080/User`, {
       method: "POST",
       credentials: "include",
@@ -138,7 +116,6 @@ export class UserNewCardComponent extends React.Component<any, ITempState> {
       },
       body: JSON.stringify(sendObj)
     });
-    console.log(resp.json());
     this.setState({editNow: true});
   }
 

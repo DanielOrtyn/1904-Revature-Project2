@@ -20,9 +20,9 @@ export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSma
         const saleItem = this.props.saleItem;
         const itemDate = new Date(this.props.saleItem.endDate);
         return (
-            <div className="card col-md-4 col-sm-6 col-xs-12">
+            <div className="card col-md-4 col-md-6 col-xs-12 ItemCard ">
                 <img src={saleItem.itemImg.url}
-                    className="card-img-top"
+                    className="card-img-top SaleItemPicture"
                     alt="..." onClick={this.goToSalePage} />
                 <div className="card-body">
                     <h5 className="card-title">{saleItem.title}</h5>
