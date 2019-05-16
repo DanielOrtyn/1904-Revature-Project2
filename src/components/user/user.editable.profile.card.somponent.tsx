@@ -2,7 +2,6 @@ import React from "react";
 import { User } from "../../model/user";
 import { Button } from "reactstrap";
 import { ImageModel } from "../../model/imageModel";
-import { async } from "q";
 
 interface IUserCardProps{
   TheUser: User;
@@ -92,8 +91,6 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
           url: this.state.displayPic.url,
           title: this.state.displayPic.title
         }
-        await console.log("SENDING THIS Image");
-        await console.log(imgObject);
         const iresp = await fetch(`http://localhost:8080/imgs`, {
           method: "POST",
           credentials: "include",
@@ -102,12 +99,11 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
           },
           body: JSON.stringify(imgObject)
         });
-        await console.log("Server img responce");
         let parsedResponse = await iresp.json();
         let returnedImg = new ImageModel(parsedResponse.imgId, iresp.url, parsedResponse.title);
       //send user
         sendObj = {
-          id: this.props.TheUser.userId,
+          userId: this.props.TheUser.userId,
           username: this.state.username,
           password: this.state.password,
           name: this.state.name,
@@ -124,7 +120,7 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
       }
       else{
         sendObj = {
-          id: this.props.TheUser.userId,
+          userId: this.props.TheUser.userId,
           username: this.state.username,
           password: this.state.password,
           name: this.state.name,
@@ -139,8 +135,6 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
           }
         }
       }
-      await console.log("SENDING THIS OBJECT");
-      await console.log(sendObj);
       const resp2 = await fetch(`http://localhost:8080/User`, {
         method: "POST",
         credentials: "include",
@@ -149,8 +143,8 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
         },
         body: JSON.stringify(sendObj)
       });
-      await console.log("returned this user");
-      await console.log(resp2.json());
+      let newUser = await resp2.json();
+      this.props.update(newUser);
     }
     catch{
       console.log("ERROR UPLOADING");

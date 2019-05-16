@@ -10,7 +10,6 @@ interface UserProps {
     update: (newUser: User) => void;
 }
 export class EditUserInfoComponent extends React.Component<UserProps, {}> {
-
     render() {
         return (
             <div>
