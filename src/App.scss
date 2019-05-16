@@ -64,11 +64,13 @@ $screen-xl-min: 1200px;
 }
 .FixedCardImg{
   object-fit: contain;
+  padding: 1em;
   width: 20em;
   height: 20em;
 }
 .MixedCardImg{
   object-fit: contain;
+  padding: 1em;
   width: 40em;
   height: 20em;
 }
@@ -126,6 +128,22 @@ $screen-xl-min: 1200px;
   flex-direction: column;
   align-items: center;
 }
+.userDisplay{
+  font-family: 'Times New Roman', Times, serif;
+  color: rgb(136, 0, 0);
+}
+
+.userLink{
+  color: rgb(136,0,0);
+}
+
+.userLink:hover{
+    color: yellow;
+}
+.nav-link:hover{
+  color: yellow;
+}
+
 /*****************************
   NAV
 *****************************/
@@ -151,6 +169,8 @@ $screen-xl-min: 1200px;
 
 nav {
   border-bottom: 1px solid #000000 !important;
+  border-right: 1px solid #000000 !important;
+  border-left: 1px solid #000000 !important;
   margin-bottom: 20px;
   -webkit-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
   -moz-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
