@@ -1,32 +1,14 @@
 import React from 'react';
 import { SaleItem } from '../../model/saleItem';
-// import { testItem } from '../../testAssets/testObjects';
+import { IState } from '../../reducers';
+import { connect } from 'react-redux';
 
 
 interface ISaleItemComponentProps {
-    itemId: number
-}
-
-interface ISaleItemComponentState {
     item?: SaleItem;
 }
 
-export class SaleItemComponent extends React.Component<ISaleItemComponentProps, ISaleItemComponentState> {
-
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            item: undefined
-        };
-    }
-
-    // in here we should initialize http calls
-    componentDidMount = async () => {
-        // fetch item from server
-        // this.setState({
-        //     item: testItem
-        // })
-    }
+export class SaleItemComponent extends React.PureComponent<ISaleItemComponentProps> {
 
     openBidMaker = () => {
         // send user to a make bid page
@@ -38,17 +20,17 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
     }
 
     renderItemComponent() {
-        if (this.state.item) {
+        if (this.props.item) {
             return (
                 <>
                     <div>
-                        <img src={this.state.item.itemImg.url} alt='test' width='300' height='200' />
+                        <img src={this.props.item.itemImg.url} alt='test' width='300' height='200' />
                     </div>
                     <div className='bidDetailDiv'>
-                        <h1>{this.state.item.title}</h1>
-                        <p>Price: ${this.state.item.getCurrentBidPrice()}</p>
+                        <h1>{this.props.item.title}</h1>
+                        <p>Price: ${this.props.item.getCurrentBidPrice()}</p>
                         <h4>Description</h4>
-                        <div>{this.state.item.description}</div>
+                        <div>{this.props.item.description}</div>
                         <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>
                     </div>
                 </>
@@ -68,3 +50,10 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
         );
     }
 }
+const mapStateToProps = (state: IState) => {
+    return {
+        currentUser: state.sales.displayItem
+    }
+}
+
+export default connect(mapStateToProps)(SaleItemComponent);
