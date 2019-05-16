@@ -103,8 +103,8 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
           body: JSON.stringify(imgObject)
         });
         await console.log("Server img responce");
-        await console.log(iresp.json());
-        let returnedImg = new ImageModel(iresp.imgId, iresp.url, iresp.title);
+        let parsedResponse = await iresp.json();
+        let returnedImg = new ImageModel(parsedResponse.imgId, iresp.url, parsedResponse.title);
       //send user
         sendObj = {
           id: this.props.TheUser.userId,
@@ -116,9 +116,9 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
           rating: this.props.TheUser.rating,
           ratingCount: this.props.TheUser.ratingCount,
           profileImg: {
-            url: iresp.url,
-            title: iresp.title,
-            imgId: iresp.imgId
+            url: parsedResponse.url,
+            title: parsedResponse.title,
+            imgId: parsedResponse.imgId
           }
         }
       }
@@ -135,7 +135,7 @@ export class UserEditCardComponent extends React.Component<IUserCardProps, ITemp
           profileImg: {
             url: this.state.displayPic.url,
             title: this.state.displayPic.title,
-            imgId: this.state.displayPic.url
+            imgId: this.state.displayPic.imgId
           }
         }
       }
