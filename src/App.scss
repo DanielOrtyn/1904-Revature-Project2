@@ -77,11 +77,11 @@ $screen-xl-min: 1200px;
   height: 2.5em;
 }
 .App-link {
-  color: #61dafb;
+  color: #00c0f5;
 }
 .Collumx2 {
   columns: 2 ;
-  margin-left: 10%;
+  margin-left: 20%;
 }
 .ItemCard {
   margin-bottom: 10%;
@@ -95,6 +95,15 @@ $screen-xl-min: 1200px;
   object-fit: contain;
   width: 10em;
   height: 10em;
+}
+.MainBackground{
+  height: $screen-lg-min;
+  overflow: auto;
+  margin: 0;
+  background-image: linear-gradient(to top, #23e7b6 0%, #5557ec 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 @keyframes App-logo-spin {
   from {
@@ -140,7 +149,7 @@ $screen-xl-min: 1200px;
 }
 
 nav {
-  border-bottom: 1px solid #ffffff !important;
+  border-bottom: 1px solid #000000 !important;
   margin-bottom: 20px;
   -webkit-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);
   -moz-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);

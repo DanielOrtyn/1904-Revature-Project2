@@ -16,24 +16,26 @@ import EditUserInfoComponent from './components/user/user.edit.page.component';
 
 const App: React.FC = () => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <NavComponent />
-        <div id="main-content-container">
-          <Switch>>
-            <Route path="/home" component={HomeComponent} />
-            <Route path="/sign-in" component={SignInComponent} />
-            <Route path="/user-info" component={UserInfoComponent}/>
-            <Route path="/saleitemList" component={SaleItemCategoryListComponent}/>
-            <Route path="/create-user" component={CreateUserInfoComponent}/>
-            <Route path="/sign-out" component={SignOutComponent}/>
-            <Route path="/sale-page" component={SaleItemComponent}/>
-            <Route path="/edit-user" component={EditUserInfoComponent}/>
-            <Route component={HomeComponent} />
-          </Switch>
-        </div>
-      </BrowserRouter>
-    </Provider>
+    <body className="MainBackground">
+      <Provider store={store}>
+        <BrowserRouter>
+          <NavComponent />
+          <div id="main-content-container">
+            <Switch>>
+              <Route path="/home" component={HomeComponent} />
+              <Route path="/sign-in" component={SignInComponent} />
+              <Route path="/user-info" component={UserInfoComponent}/>
+              <Route path="/saleitemList" component={SaleItemCategoryListComponent}/>
+              <Route path="/create-user" component={CreateUserInfoComponent}/>
+              <Route path="/sign-out" component={SignOutComponent}/>
+              <Route path="/sale-page" component={SaleItemComponent}/>
+              <Route path="/edit-user" component={EditUserInfoComponent}/>
+              <Route component={HomeComponent} />
+            </Switch>
+          </div>
+        </BrowserRouter>
+      </Provider>
+    </body>
   );
 }
 
