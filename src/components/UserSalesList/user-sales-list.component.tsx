@@ -1,8 +1,9 @@
 import React from 'react';
 import { SaleItem } from '../../model/saleItem';
-import { SaleItemSmallCardComponent } from '../saleitem/saleitem-smallcard.component';
+import { RouteComponentProps } from 'react-router';
+import SaleItemSmallCardComponent from '../saleitem/saleitem-smallcard.component'
 
-interface IUserSalesListComponentProps {
+interface IUserSalesListComponentProps extends RouteComponentProps<{}> {
     userSalesList: SaleItem[]
 }
 
@@ -19,7 +20,9 @@ export class UserSalesListComponent extends React.PureComponent<IUserSalesListCo
         return (
             <>
                 {this.props.userSalesList.map(saleItem => (
-                    <SaleItemSmallCardComponent  key={'saleItem-' + saleItem.saleId} saleItem={saleItem} />
+                    <SaleItemSmallCardComponent key={'saleItem-' + saleItem.saleId}
+                        saleItem={saleItem} history={this.props.history}
+                        location={this.props.location} match={this.props.match} />
                 ))}
             </>
         );

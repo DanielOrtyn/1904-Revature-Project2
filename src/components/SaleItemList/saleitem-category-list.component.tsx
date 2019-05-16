@@ -10,10 +10,10 @@ import { TextInputComponent } from '../input/textinput.component';
 const allCategory = new Category(-1, 'All')
 
 interface ISaleItemListComponentState {
-    categoryShown: Category;
-    searchText: string;
-    listOfCategories: Category[];
-    saleItemList: SaleItem[];
+    categoryShown: Category
+    searchText: string
+    listOfCategories: Category[]
+    saleItemList: SaleItem[]
 }
 
 export class SaleItemCategoryListComponent extends React.Component<any, ISaleItemListComponentState> {
@@ -114,7 +114,10 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
                     <TextInputComponent valueUpdate={this.updateSearchTerm} placeHolder='search' />
                     <button onClick={this.searchSaleItems}>Search</button>
                 </div>
-                {this.state.saleItemList.length && <SaleItemListComponent saleItemList={this.state.saleItemList} />}
+                {this.state.saleItemList.length &&
+                    <SaleItemListComponent saleItemList={this.state.saleItemList}
+                        history={this.props.history} location={this.props.location}
+                        match={this.props.match} />}
             </>
         );
     }
