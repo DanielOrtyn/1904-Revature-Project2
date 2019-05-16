@@ -1,6 +1,6 @@
 import React from 'react';
 import { SaleItem } from '../../model/saleItem';
-import { SaleItemSmallCardComponent } from './saleitem-smallcard.component';
+import { SaleItemSmallCardComponent } from '../saleitem/saleitem-smallcard.component';
 
 interface ISaleItemListComponentProps {
     saleItemList: SaleItem[]

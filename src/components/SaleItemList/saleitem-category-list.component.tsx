@@ -5,11 +5,13 @@ import { environment } from '../../environment';
 import { SaleItemListComponent } from './saleitem-list.component';
 import { DropDownListInputComponent } from '../input/dopdownlist.component';
 import { IDisplayName } from '../../model/IDisplayName';
+import { TextInputComponent } from '../input/textinput.component';
 
 const allCategory = new Category(-1, 'All')
 
 interface ISaleItemListComponentState {
     categoryShown: Category;
+    searchText: string;
     listOfCategories: Category[];
     saleItemList: SaleItem[];
 }
@@ -20,6 +22,7 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
         super(props);
         this.state = {
             categoryShown: allCategory,
+            searchText: '',
             listOfCategories: [],
             saleItemList: []
         };
@@ -27,18 +30,28 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
 
     changeCategoryShown = (newCategory: IDisplayName) => {
         if (newCategory && newCategory instanceof Category) {
-            console.log("change cate");
-            console.log(this.state.categoryShown.name);
             this.setState({
                 categoryShown: newCategory
             });
-            this.fetchCategorySaleItemList(newCategory);
         }
     }
 
+    updateSearchTerm = (newSearch: string) => {
+        this.setState({
+            searchText: newSearch
+        });
+    }
+
+    searchSaleItems = async () => {
+        let listOfItems: SaleItem[] = await this.fetchCategorySaleItemList();
+        this.setState({
+            saleItemList: listOfItems
+        });
+    }
+
     componentDidMount = async () => {
-        this.fetchCategorySaleItemList(this.state.categoryShown);
-        this.fetchListOfCategories();
+        await this.fetchListOfCategories();
+        await this.searchSaleItems();
     }
 
     fetchListOfCategories = async () => {
@@ -56,42 +69,50 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
         });
     }
 
-    fetchCategorySaleItemList = async (newCategory: Category) => {
-        let listOfItems: SaleItem[] = [];
-        if (newCategory.name === 'All' ||
-            newCategory.categoryId < 1) {
-            console.log("get all cate");
-            const resp = await fetch(environment.context + '/SaleItem', {
+    fetchCategorySaleItemList = async () => {
+        let returnList: SaleItem[] = [];
+        if (this.state.categoryShown.name === 'All' ||
+            this.state.categoryShown.categoryId < 1) {
+            const path: string = '/SaleItem/search/active/text/' + this.state.searchText;
+            console.log(path);
+            const resp = await fetch(environment.context + path, {
                 method: 'GET',
                 credentials: 'include'
             });
-            listOfItems = await resp.json();
+            returnList = await resp.json();
         }
         else {
-            console.log("get only one ");
-            const resp = await fetch(environment.context + '/SaleItem/category', {
+            const path: string = '/SaleItem/search/active/category/text';
+            const resp = await fetch(environment.context + path, {
                 method: 'POST',
                 credentials: 'include',
-                body: JSON.stringify(newCategory),
+                body: JSON.stringify({
+                    searchString: this.state.searchText,
+                    category: this.state.categoryShown
+                }),
                 headers: {
                     'content-type': 'application/json'
                 }
             });
-            listOfItems = await resp.json();
+            returnList = await resp.json();
         }
-        this.setState({
-            saleItemList: listOfItems.map(item =>
-                SaleItem.constructViaObject(item))
-        });
+
+        let saleItemList: SaleItem[] = [];
+        for (let i = 0; i < returnList.length; i++) {
+            let item = returnList[i];
+            saleItemList.push(SaleItem.constructViaObject(item));
+        }
+        return saleItemList;
     }
 
     render() {
         return (
             <>
                 <div>
-                    <h3>Category: </h3>
                     <DropDownListInputComponent optionsList={this.state.listOfCategories}
                         updateSelection={this.changeCategoryShown} />
+                    <TextInputComponent valueUpdate={this.updateSearchTerm} placeHolder='search' />
+                    <button onClick={this.searchSaleItems}>Search</button>
                 </div>
                 {this.state.saleItemList.length && <SaleItemListComponent saleItemList={this.state.saleItemList} />}
             </>
