@@ -8,7 +8,7 @@ import SignInComponent from './components/sign-in/sign-in.component';
 import { Provider } from 'react-redux';
 import { store } from './Store';
 import  UserInfoComponent  from './components/user/user.info.page.component';
-import { SaleItemComponent } from './components/saleitem/saleitem.component';
+import  SaleItemComponent  from './components/saleitem/saleitem.component';
 import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
 import { CreateUserInfoComponent } from './components/user/user.create.page.component';
 import SignOutComponent from './components/sign-in/sign-out.component';

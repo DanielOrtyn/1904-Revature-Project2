@@ -6,7 +6,7 @@ export const salesTypes = {
 
 export const newSaleItem = (newSaleItem: SaleItem, history: any) => async (dispatch) => {
     try {
-        dispatch({
+        await dispatch({
             payload: {
                 newSaleItem
             },

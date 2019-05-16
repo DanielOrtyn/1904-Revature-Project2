@@ -9,10 +9,12 @@ interface ISaleItemComponentProps {
 }
 
 export class SaleItemComponent extends React.PureComponent<ISaleItemComponentProps> {
-
+    constructor(props){
+        super(props);
+    }
     openBidMaker = () => {
         // send user to a make bid page
-        throw ('Code not implemented. Make Daniel do his job');
+        throw ('Code not implemented. Make Daniel do his job better');
     }
 
     renderItemLoadFailedComponent() {
@@ -29,7 +31,7 @@ export class SaleItemComponent extends React.PureComponent<ISaleItemComponentPro
                     </div>
                     <div className='bidDetailDiv'>
                         <h1>{this.props.item.title}</h1>
-                        <p>Price: ${this.props.item.getCurrentBidPrice()}</p>
+                        <p>Price: ${this.props.item.currentBid.currentBidPrice}</p>
                         <h4>Description</h4>
                         <div>{this.props.item.description}</div>
                         <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>

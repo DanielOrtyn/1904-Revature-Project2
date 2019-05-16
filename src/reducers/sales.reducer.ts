@@ -8,13 +8,11 @@ const initialState: ISalesState = {
 export const salesReducer = (state = initialState, action) => {
   switch (action.type) {
     case salesTypes.UPDATE_DISPLAY_ITEM:
-    console.log(action.payload.displayItem);
       return {
         ...state,
-        displayItem: action.payload.displayItem
+        displayItem: action.payload.newSaleItem
       }
     default:
-
   }
   return state;
 }
