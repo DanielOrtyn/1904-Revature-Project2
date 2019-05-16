@@ -46,9 +46,6 @@ export class NavComponent extends React.PureComponent<INaveProps> {
                                 </li>
                         }
                         <li className="nav-item active">
-                            <Link to="/saleitemtest" className="unset-anchor nav-link">SaleItem</Link>
-                        </li>
-                        <li className="nav-item active">
                             <Link to="/saleitemList" className="unset-anchor nav-link">SaleItemList</Link>
                         </li>
                     </ul>

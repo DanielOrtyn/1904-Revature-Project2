@@ -20,6 +20,7 @@ export class SaleItemComponent extends React.PureComponent<ISaleItemComponentPro
     }
 
     renderItemComponent() {
+        console.log(this.props.item)
         if (this.props.item) {
             return (
                 <>
@@ -52,7 +53,7 @@ export class SaleItemComponent extends React.PureComponent<ISaleItemComponentPro
 }
 const mapStateToProps = (state: IState) => {
     return {
-        currentUser: state.sales.displayItem
+        item: state.sales.displayItem
     }
 }
 

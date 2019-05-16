@@ -12,7 +12,7 @@ export const newSaleItem = (newSaleItem: SaleItem, history: any) => async (dispa
             },
             type: salesTypes.UPDATE_DISPLAY_ITEM
         })
-        history.push('/home');
+        history.push('/sale-page');
     } catch (err) {
         console.log(err);
     }

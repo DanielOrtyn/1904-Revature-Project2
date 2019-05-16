@@ -23,10 +23,10 @@ const App: React.FC = () => {
             <Route path="/home" component={HomeComponent} />
             <Route path="/sign-in" component={SignInComponent} />
             <Route path="/user-info" component={UserInfoComponent}/>
-            <Route path="/saleitemtest" component={SaleItemComponent}/>
             <Route path="/saleitemList" component={SaleItemCategoryListComponent}/>
             <Route path="/create-user" component={CreateUserInfoComponent}/>
             <Route path="/sign-out" component={SignOutComponent}/>
+            <Route path="/sale-page" component={SaleItemComponent}/>
             <Route component={HomeComponent} />
           </Switch>
         </div>
