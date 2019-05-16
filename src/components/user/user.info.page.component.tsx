@@ -19,7 +19,7 @@ export class UserInfoComponent extends React.Component<IUserProps, UserState> {
       this.state = {
         currentUser: new User(0, "username", "password", "John Doe", "jdoe@random.com",
          "Number Street, City, State, Zip",
-          new ImageModel(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Base"))
+          new ImageModel(0, "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg", "Base"), 0, 0)
       }
     }
     else{
