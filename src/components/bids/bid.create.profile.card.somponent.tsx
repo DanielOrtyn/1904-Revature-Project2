@@ -1,9 +1,12 @@
 import React from "react";
-import { Redirect, RouteComponentProps } from "react-router";
+import { connect } from 'react-redux';
+import { RouteComponentProps } from "react-router";
 import { Button } from "reactstrap";
+import { newSaleItem } from "../../actions/sales.actions";
 import { SaleItem } from "../../model/saleItem";
 import { User } from "../../model/user";
 import { UserBid } from "../../model/UserBid";
+import { IState } from "../../reducers";
 
 
 interface INewBidCardProps extends RouteComponentProps<{}> {
@@ -80,3 +83,14 @@ export class NewBidCardComponent extends React.Component<INewBidCardProps, INewB
         )
     }
 }
+
+const mapStateToProps = (state: IState) => {
+    return {
+    }
+}
+
+const mapDispatchToProps = {
+    newSaleItem: newSaleItem
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewBidCardComponent);

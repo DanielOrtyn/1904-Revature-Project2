@@ -3,13 +3,14 @@ import { SaleItem } from '../../model/saleItem';
 import { User } from '../../model/user';
 import { IState } from '../../reducers';
 import { connect } from 'react-redux';
-import { SmallSaleItemComponent } from '../SaleItemList/saleitem.smallcard.component'
+import { RouteComponentProps } from 'react-router';
+import SaleItemSmallCardComponent from '../saleitem/saleitem-smallcard.component';
 
 interface IUserSalesListState {
     currentUser: User,
     userSalesList: SaleItem[]
 }
-interface IUserSalesListProps {
+interface IUserSalesListProps extends RouteComponentProps<{}> {
     currentUser: User
 }
 
@@ -30,8 +31,8 @@ export class UserBidListComponent extends React.Component<IUserSalesListProps, I
                 credentials: 'include',
                 body: JSON.stringify(this.state.currentUser),
                 headers: {
-                    'content-type': 'application/json'                    
-                }                
+                    'content-type': 'application/json'
+                }
             });
             const body = await resp.json();
             this.setState({
@@ -46,7 +47,9 @@ export class UserBidListComponent extends React.Component<IUserSalesListProps, I
         return (
             <>
                 {this.state.userSalesList.map(item => (
-                    <SmallSaleItemComponent  key={'saleItem-' + item.saleId} item={item} />
+                    <SaleItemSmallCardComponent key={'saleItem-' + item.saleId}
+                        saleItem={item} history={this.props.history}
+                        location={this.props.location} match={this.props.match} />
                 ))}
             </>
         );

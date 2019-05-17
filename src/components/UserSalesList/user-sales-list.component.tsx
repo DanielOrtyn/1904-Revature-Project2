@@ -1,7 +1,7 @@
 import React from 'react';
-import { SaleItem } from '../../model/saleItem';
 import { RouteComponentProps } from 'react-router';
-import SaleItemSmallCardComponent from '../saleitem/saleitem-smallcard.component'
+import { SaleItem } from '../../model/saleItem';
+import SaleItemSmallCardComponent from '../saleitem/saleitem-smallcard.component';
 
 interface IUserSalesListComponentProps extends RouteComponentProps<{}> {
     userSalesList: SaleItem[]

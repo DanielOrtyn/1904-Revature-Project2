@@ -1,15 +1,15 @@
 import React from 'react';
-import { SaleItem } from '../../model/saleItem';
-import { IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import { NewBidCardComponent } from '../bids/bid.create.profile.card.somponent';
+import { SaleItem } from '../../model/saleItem';
 import { User } from '../../model/user';
+import { IState } from '../../reducers';
+import NewBidCardComponent from '../bids/bid.create.profile.card.somponent';
 
 
 interface ISaleItemComponentProps extends RouteComponentProps<{}> {
     currentUser: User;
-    item: SaleItem;
+    saleItem: SaleItem;
 }
 
 interface ISaleItemComponentHistory {
@@ -40,28 +40,32 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
     renderBid() {
         if (this.state.allowBid) {
             return (
-                <NewBidCardComponent saleItem={this.props.item} currentUser={this.props.currentUser}
-                    history={this.props.history} location={this.props.location}
-                    match={this.props.match} />
+                <NewBidCardComponent saleItem={this.props.saleItem}
+                    currentUser={this.props.currentUser} history={this.props.history}
+                    location={this.props.location} match={this.props.match} />
             );
         }
         return <></>;
     }
 
     renderItemComponent() {
-        if (this.props.item) {
+        const saleItem = this.props.saleItem;
+        console.log(saleItem);
+        if (saleItem) {
+            const itemDate = new Date(saleItem.endDate);
             return (
                 <>
                     <div>
                         <div>
-                            <img src={this.props.item.itemImg.url} alt='test' width='300' height='200' />
+                            <img src={saleItem.itemImg.url} alt='test' width='300' height='200' />
                         </div>
                         <div className='bidDetailDiv'>
-                            <h1>{this.props.item.title}</h1>
-                            <p>Price: ${this.props.item.currentBid.currentBidPrice}</p>
+                            <h1>{saleItem.title}</h1>
+                            <p>Price: ${saleItem.currentBid.currentBidPrice}</p>
                             <h4>Description</h4>
-                            <div>{this.props.item.description}</div>
+                            <div>{saleItem.description}</div>
                             <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>
+                            {/* <p>End Date: {itemDate.toDateString()}</p> */}
                         </div>
                         <div>
                             {this.renderBid()}
@@ -87,7 +91,7 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
 const mapStateToProps = (state: IState) => {
     return {
         currentUser: state.auth.currentUser,
-        item: state.sales.displayItem
+        saleItem: state.sales.displayItem
     }
 }
 
