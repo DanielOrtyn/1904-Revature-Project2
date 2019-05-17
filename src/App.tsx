@@ -13,6 +13,8 @@ import { CreateUserInfoComponent } from './components/user/user.create.page.comp
 import SignOutComponent from './components/sign-in/sign-out.component';
 import EditUserInfoComponent from './components/user/user.edit.page.component';
 import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
+import { UserSalesListComponent } from './components/UserSalesList/user-sales-list.component';
+import { UserBidListComponent } from './components/UserBidList/user-bid-list.component';
 
 const App: React.FC = () => {
   return (
@@ -29,6 +31,8 @@ const App: React.FC = () => {
               <Route path="/create-user" component={CreateUserInfoComponent}/>
               <Route path="/sign-out" component={SignOutComponent}/>
               <Route path="/sale-page" component={SaleItemComponent}/>
+              <Route path="/userSalesList" component={UserSalesListComponent}/>
+              <Route path="/userBidList" component={UserBidListComponent}/>
               <Route path="/edit-user" component={EditUserInfoComponent}/>
               <Route component={HomeComponent} />
             </Switch>
