@@ -1,9 +1,9 @@
 import React from 'react';
-import { SaleItem } from '../../model/saleItem';
 import { connect } from 'react-redux';
-import { IState } from '../../reducers';
-import { newSaleItem } from '../../actions/sales.actions';
 import { RouteComponentProps } from 'react-router';
+import { newSaleItem } from '../../actions/sales.actions';
+import { SaleItem } from '../../model/saleItem';
+import { IState } from '../../reducers';
 
 interface ISaleItemSmallCardProps extends RouteComponentProps<{}> {
     saleItem: SaleItem;
@@ -15,7 +15,7 @@ export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSma
     goToSalePage = () => {
         this.props.newSaleItem(this.props.saleItem, this.props.history);
     }
-    
+
     render() {
         const saleItem = this.props.saleItem;
         const itemDate = new Date(this.props.saleItem.endDate);
@@ -30,6 +30,9 @@ export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSma
                 <ul className="list-group list-group-flush">
                     <li className="list-group-item">Minimum Bid Price: ${saleItem.currentBid.currentBidPrice}</li>
                     <li className="list-group-item">End Date: {itemDate.toDateString()}</li>
+                    <li className="list-group-item">
+                        <button className="btn btn-success" onClick={this.goToSalePage}>Go To</button>
+                    </li>
                 </ul>
             </div>
         )

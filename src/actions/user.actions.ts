@@ -25,7 +25,6 @@ export const login = (username: string, password: string, history: any) => async
             })
         } else if (resp.status >= 200 && resp.status < 300) {
             const user = await resp.json();
-            console.log(user);
 
             dispatch({
                 payload: {

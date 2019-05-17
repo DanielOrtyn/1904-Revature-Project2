@@ -1,39 +1,74 @@
 import React from 'react';
-import { SaleItem } from '../../model/saleItem';
-import { IState } from '../../reducers';
 import { connect } from 'react-redux';
+import { RouteComponentProps } from 'react-router';
+import { SaleItem } from '../../model/saleItem';
+import { User } from '../../model/user';
+import { IState } from '../../reducers';
+import NewBidCardComponent from '../bids/bid.create.profile.card.somponent';
 
 
-interface ISaleItemComponentProps {
-    item?: SaleItem;
+interface ISaleItemComponentProps extends RouteComponentProps<{}> {
+    currentUser: User;
+    saleItem: SaleItem;
 }
 
-export class SaleItemComponent extends React.PureComponent<ISaleItemComponentProps> {
-    constructor(props){
+interface ISaleItemComponentHistory {
+    allowBid: boolean;
+}
+
+export class SaleItemComponent extends React.Component<ISaleItemComponentProps, ISaleItemComponentHistory> {
+    constructor(props) {
         super(props);
+        this.state = {
+            allowBid: false
+        }
     }
     openBidMaker = () => {
-        // send user to a make bid page
-        throw ('Code not implemented. Make Daniel do his job better');
+        if (this.props.currentUser) {
+            this.setState({
+                allowBid: true
+            })
+        } else {
+            this.props.history.push('/sign-in');
+        }
     }
 
     renderItemLoadFailedComponent() {
         return (<p>Warning, Item Did Not Load</p>);
     }
 
+    renderBid() {
+        if (this.state.allowBid) {
+            return (
+                <NewBidCardComponent saleItem={this.props.saleItem}
+                    currentUser={this.props.currentUser} history={this.props.history}
+                    location={this.props.location} match={this.props.match} />
+            );
+        }
+        return <></>;
+    }
+
     renderItemComponent() {
-        if (this.props.item) {
+        const saleItem = this.props.saleItem;
+        if (saleItem) {
+            const itemDate = new Date(saleItem.endDate);
             return (
                 <>
                     <div>
-                        <img src={this.props.item.itemImg.url} className="FixedCardImg" />
-                    </div>
-                    <div className='bidDetailDiv'>
-                        <h1>{this.props.item.title}</h1>
-                        <p>Price: ${this.props.item.currentBid.currentBidPrice}</p>
-                        <h4>Description</h4>
-                        <div>{this.props.item.description}</div>
-                        <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>
+                        <div>
+                            <img src={saleItem.itemImg.url} alt='test' width='300' height='200' />
+                        </div>
+                        <div className='bidDetailDiv'>
+                            <h1>{saleItem.title}</h1>
+                            <p>Price: ${saleItem.currentBid.currentBidPrice}</p>
+                            <p>End Date: {itemDate.toDateString()}</p>
+                            <h4>Description</h4>
+                            <div>{saleItem.description}</div>
+                            <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>
+                        </div>
+                        <div>
+                            {this.renderBid()}
+                        </div>
                     </div>
                 </>
             );
@@ -54,7 +89,8 @@ export class SaleItemComponent extends React.PureComponent<ISaleItemComponentPro
 }
 const mapStateToProps = (state: IState) => {
     return {
-        item: state.sales.displayItem
+        currentUser: state.auth.currentUser,
+        saleItem: state.sales.displayItem
     }
 }
 

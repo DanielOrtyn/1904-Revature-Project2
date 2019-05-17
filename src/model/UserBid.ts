@@ -2,16 +2,16 @@ import { SaleItem } from "./saleItem";
 import { User } from "./user";
 
 export class UserBid {
-    saleItem: SaleItem;
-    bider: User;
-    maximumBidPrice: number;
+    saleItemId: number;
+    bidder: User;
+    maxBidPrice: number;
     currentBidPrice: number;
 
 
-    constructor(saleItem: SaleItem, bider: User, maximumBidPrice: number, currentBidPrice: number) {
-        this.saleItem = saleItem;
-        this.bider = bider;
-        this.maximumBidPrice = maximumBidPrice;
+    constructor(saleItemId: number, bidder: User, maxBidPrice: number, currentBidPrice: number) {
+        this.saleItemId = saleItemId;
+        this.bidder = bidder;
+        this.maxBidPrice = maxBidPrice;
         this.currentBidPrice = currentBidPrice;
     }
 
@@ -19,8 +19,7 @@ export class UserBid {
         if (any) {
             return any;
         }
-        return new UserBid(SaleItem.constructViaObject(any.saleItem),
-            User.constructViaObject(any.bider), any.maximumBidPrice,
-            any.currentBidPrice);
+        return new UserBid(any.saleItemId, User.constructViaObject(any.bidder),
+            any.maxBidPrice, any.currentBidPrice);
     }
 }
