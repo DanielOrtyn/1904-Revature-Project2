@@ -50,7 +50,6 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
 
     renderItemComponent() {
         const saleItem = this.props.saleItem;
-        console.log(saleItem);
         if (saleItem) {
             const itemDate = new Date(saleItem.endDate);
             return (
@@ -65,7 +64,7 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
                             <h4>Description</h4>
                             <div>{saleItem.description}</div>
                             <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>
-                            {/* <p>End Date: {itemDate.toDateString()}</p> */}
+                            <p>End Date: {itemDate.toDateString()}</p>
                         </div>
                         <div>
                             {this.renderBid()}

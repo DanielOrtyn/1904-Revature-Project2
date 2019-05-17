@@ -13,7 +13,6 @@ interface ISaleItemSmallCardProps extends RouteComponentProps<{}> {
 export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSmallCardProps> {
 
     goToSalePage = () => {
-        console.log("changing page")
         this.props.newSaleItem(this.props.saleItem, this.props.history);
     }
 
