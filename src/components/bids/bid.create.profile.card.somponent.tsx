@@ -9,6 +9,7 @@ import { UserBid } from "../../model/UserBid";
 interface INewBidCardProps extends RouteComponentProps<{}> {
     saleItem: SaleItem;
     currentUser?: User;
+    newSaleItem: (newSaleItem: SaleItem, history: any) => void
 }
 
 interface INewBidCardState {
@@ -32,7 +33,7 @@ export class NewBidCardComponent extends React.Component<INewBidCardProps, INewB
                 this.props.saleItem.saleId, this.props.currentUser,
                 this.state.bidMaximum, 0.0
             );
-            const resp = await fetch(`http://localhost:8080/bid`, {
+            const bidResp = await fetch(`http://localhost:8080/bid`, {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify(newBid),
@@ -40,6 +41,17 @@ export class NewBidCardComponent extends React.Component<INewBidCardProps, INewB
                     'Content-Type': 'application/json'
                 }
             });
+
+            if(bidResp.status>=200 && bidResp.status < 300){
+                return;
+            }
+            const saleItemUpdateResp = await fetch(`http://localhost:8080/SaleItem/id/`+this.props.saleItem.saleId, {
+                method: "Get",
+                credentials: "include"
+            });
+            
+            this.props.newSaleItem(await saleItemUpdateResp.json(), this.props.history);
+
         }
     }
 
