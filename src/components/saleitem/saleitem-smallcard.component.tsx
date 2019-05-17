@@ -28,7 +28,7 @@ export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSma
                     <h5 className="card-title">{saleItem.title}</h5>
                 </div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Minimum Bid Price: {saleItem.currentBid.currentBidPrice}</li>
+                    <li className="list-group-item">Minimum Bid Price: ${saleItem.currentBid.currentBidPrice}</li>
                     <li className="list-group-item">End Date: {itemDate.toDateString()}</li>
                 </ul>
             </div>

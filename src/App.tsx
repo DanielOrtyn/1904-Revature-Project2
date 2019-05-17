@@ -16,7 +16,7 @@ import EditUserInfoComponent from './components/user/user.edit.page.component';
 
 const App: React.FC = () => {
   return (
-    <body className="MainBackground">
+    <div className="MainBackground">
       <Provider store={store}>
         <BrowserRouter>
           <NavComponent />
@@ -35,7 +35,7 @@ const App: React.FC = () => {
           </div>
         </BrowserRouter>
       </Provider>
-    </body>
+    </div>
   );
 }
 

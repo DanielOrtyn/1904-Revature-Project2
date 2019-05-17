@@ -26,7 +26,7 @@ export class SaleItemComponent extends React.PureComponent<ISaleItemComponentPro
             return (
                 <>
                     <div>
-                        <img src={this.props.item.itemImg.url} alt='test' width='300' height='200' />
+                        <img src={this.props.item.itemImg.url} className="FixedCardImg" />
                     </div>
                     <div className='bidDetailDiv'>
                         <h1>{this.props.item.title}</h1>

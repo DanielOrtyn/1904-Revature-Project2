@@ -85,6 +85,10 @@ $screen-xl-min: 1200px;
   columns: 2 ;
   margin-left: 20%;
 }
+.Collumx3 {
+  columns: 3 ;
+  margin-left: 20%;
+}
 .ItemCard {
   margin-bottom: 10%;
   display: flex;
@@ -95,7 +99,7 @@ $screen-xl-min: 1200px;
 }
 .SaleItemPicture{
   object-fit: contain;
-  margin: 1em;
+  padding: 0.2em;
   width: 10em;
   height: 10em;
 }
