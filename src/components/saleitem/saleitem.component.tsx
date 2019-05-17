@@ -61,10 +61,10 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
                         <div className='bidDetailDiv'>
                             <h1>{saleItem.title}</h1>
                             <p>Price: ${saleItem.currentBid.currentBidPrice}</p>
+                            <p>End Date: {itemDate.toDateString()}</p>
                             <h4>Description</h4>
                             <div>{saleItem.description}</div>
                             <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>
-                            <p>End Date: {itemDate.toDateString()}</p>
                         </div>
                         <div>
                             {this.renderBid()}
