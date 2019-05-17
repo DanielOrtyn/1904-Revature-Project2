@@ -41,18 +41,19 @@ export class NewBidCardComponent extends React.Component<INewBidCardProps, INewB
                 credentials: "include",
                 body: JSON.stringify(newBid),
                 headers: {
-                    'Content-Type': 'application/json'
+                    'content-type': 'application/json'
                 }
             });
-
-            if(bidResp.status>=200 && bidResp.status < 300){
+            const bidJson = bidResp.json();
+            console.log(bidJson);
+            if (bidResp.status >= 200 && bidResp.status < 300) {
                 return;
             }
-            const saleItemUpdateResp = await fetch(`http://localhost:8080/SaleItem/id/`+this.props.saleItem.saleId, {
+            const saleItemUpdateResp = await fetch(`http://localhost:8080/SaleItem/id/` + this.props.saleItem.saleId, {
                 method: "Get",
                 credentials: "include"
             });
-            
+
             this.props.newSaleItem(await saleItemUpdateResp.json(), this.props.history);
 
         }
