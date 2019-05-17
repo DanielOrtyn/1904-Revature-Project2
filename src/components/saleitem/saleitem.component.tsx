@@ -62,6 +62,7 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
                             <h1>{saleItem.title}</h1>
                             <p>Price: ${saleItem.currentBid.currentBidPrice}</p>
                             <p>End Date: {itemDate.toDateString()}</p>
+                            <p>Seller: {saleItem.seller.username} Rating: {saleItem.seller.rating / saleItem.seller.ratingCount}</p>
                             <h4>Description</h4>
                             <div>{saleItem.description}</div>
                             <button className="btn btn-primary" onClick={this.openBidMaker}>Place Bid</button>

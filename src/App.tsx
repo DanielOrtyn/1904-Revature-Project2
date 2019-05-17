@@ -13,6 +13,7 @@ import { SaleItemCategoryListComponent } from './components/SaleItemList/saleite
 import { CreateUserInfoComponent } from './components/user/user.create.page.component';
 import SignOutComponent from './components/sign-in/sign-out.component';
 import EditUserInfoComponent from './components/user/user.edit.page.component';
+import NewSaleCardComponent from './components/saleitem/saleitem.new.card.somponent';
 
 const App: React.FC = () => {
     return (
@@ -25,11 +26,12 @@ const App: React.FC = () => {
                             <Route path="/home" component={HomeComponent} />
                             <Route path="/sign-in" component={SignInComponent} />
                             <Route path="/user-info" component={UserInfoComponent} />
-                            <Route path="/saleitemList" component={SaleItemCategoryListComponent} />
+                            <Route path="/saleitem-List" component={SaleItemCategoryListComponent} />
                             <Route path="/create-user" component={CreateUserInfoComponent} />
                             <Route path="/sign-out" component={SignOutComponent} />
                             <Route path="/sale-page" component={SaleItemComponent} />
                             <Route path="/edit-user" component={EditUserInfoComponent} />
+                            <Route path="/new-sale" component={NewSaleCardComponent} />
                             <Route component={HomeComponent} />
                         </Switch>
                     </div>
