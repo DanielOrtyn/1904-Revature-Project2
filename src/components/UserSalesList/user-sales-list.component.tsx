@@ -1,10 +1,13 @@
 import React from 'react';
 import { SaleItem } from '../../model/saleItem';
-// import { SmallSaleItemComponent } from './saleitem.smallcard.component';
 import { SaleItemSmallCardComponent } from '../saleitem/saleitem-card.component';
 
-interface IUserSalesListComponentProps {
-    userSalesList: SaleItem[]
+interface IUserSalesListState {
+    currentUser: User,
+    userBidList: UserBid[]
+}
+interface IUserSalesListProps {
+    currentUser: User
 }
 
 export class UserSalesListComponent extends React.PureComponent<IUserSalesListComponentProps> {
