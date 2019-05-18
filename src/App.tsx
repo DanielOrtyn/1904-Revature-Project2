@@ -13,8 +13,8 @@ import { CreateUserInfoComponent } from './components/user/user.create.page.comp
 import SignOutComponent from './components/sign-in/sign-out.component';
 import EditUserInfoComponent from './components/user/user.edit.page.component';
 import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
-import { UserSalesListComponent } from './components/UserSalesList/user-sales-list.component';
-import { UserBidListComponent } from './components/UserBidList/user-bid-list.component';
+import UserSalesListComponent from './components/UserSalesList/user-sales-list.component';
+import UserBidListComponent from './components/UserBidList/user-bid-list.component';
 
 const App: React.FC = () => {
   return (
