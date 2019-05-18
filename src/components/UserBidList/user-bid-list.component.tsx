@@ -1,32 +1,33 @@
 import React from 'react';
 import { SaleItem } from '../../model/saleItem';
+import { UserBid } from '../../model/UserBid';
 import { User } from '../../model/user';
 import { IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import SaleItemSmallCardComponent from '../saleitem/saleitem-smallcard.component';
+import { UserBidListCardComponent } from './user-bid-list-card.component';
 
-interface IUserSalesListState {
+interface IUserBidListState {
     currentUser: User,
-    userSalesList: SaleItem[]
+    userBidList: UserBid[]
 }
-interface IUserSalesListProps extends RouteComponentProps<{}> {
+interface IUserBidListProps extends RouteComponentProps<{}> {
     currentUser: User
 }
 
-export class UserBidListComponent extends React.Component<IUserSalesListProps, IUserSalesListState> {
+export class UserBidListComponent extends React.Component<IUserBidListProps, IUserBidListState> {
 
     constructor(props: any) {
         super(props);
         this.state = {
             currentUser: this.props.currentUser,
-            userSalesList: []
+            userBidList: []
         };
     }
 
     componentDidMount = async () => {
         try {
-            const resp = await fetch('http://localhost:8080/SaleItem/seller', {
+            const resp = await fetch('http://localhost:8080/bid/findByBidder', {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(this.state.currentUser),
@@ -36,7 +37,7 @@ export class UserBidListComponent extends React.Component<IUserSalesListProps, I
             });
             const body = await resp.json();
             this.setState({
-                userSalesList: body
+                userBidList: body
             })
         } catch (err) {
             console.log(err);
@@ -46,10 +47,9 @@ export class UserBidListComponent extends React.Component<IUserSalesListProps, I
     render() {
         return (
             <>
-                {this.state.userSalesList.map(item => (
-                    <SaleItemSmallCardComponent key={'saleItem-' + item.saleId}
-                        saleItem={item} history={this.props.history}
-                        location={this.props.location} match={this.props.match} />
+                {this.state.userBidList.map(userBid => (
+                    <UserBidListCardComponent key={'userBid-' + userBid.saleItemId} 
+                        userBid={userBid} /> 
                 ))}
             </>
         );
