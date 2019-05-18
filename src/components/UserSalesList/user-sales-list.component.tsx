@@ -34,10 +34,13 @@ export class UserSalesListComponent extends React.Component<IUserSalesListProps,
                     'content-type': 'application/json'
                 }
             });
-            const body: SaleItem[] = await resp.json();
-            this.setState({
-                userSalesList: body
-            })
+            if(resp.status === 200) {
+                const body: SaleItem[] = await resp.json();
+                this.setState({
+                    userSalesList: body
+                });
+            }
+            
         } catch (err) {
             console.log(err);
         }
