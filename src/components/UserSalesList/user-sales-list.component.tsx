@@ -34,7 +34,7 @@ export class UserSalesListComponent extends React.Component<IUserSalesListProps,
                     'content-type': 'application/json'
                 }
             });
-            const body = await resp.json();
+            const body: SaleItem[] = await resp.json();
             this.setState({
                 userSalesList: body
             })
@@ -46,7 +46,7 @@ export class UserSalesListComponent extends React.Component<IUserSalesListProps,
     render() {
         return (
             <>
-                {this.state.userSalesList.map(saleItem => (
+                {this.state.userSalesList && this.state.userSalesList.map(saleItem => (
                     <SaleItemSmallCardComponent key={'saleItem-' + saleItem.saleId}
                         saleItem={saleItem} history={this.props.history}
                         location={this.props.location} match={this.props.match} />

@@ -21,18 +21,18 @@ export class UserCardComponent extends React.Component<IUserCardProps, MyState> 
     }
   }
 
-  getUserBidsWithSales = async () => {
-    const resp = await fetch(environment.context + '/bid/findByBidderWithAttatchSales', {
-      method: 'POST',
-      credentials: 'include',
-      body: JSON.stringify(this.props.TheUser),
-      headers: {
-        'content-type': 'application/json'
-      }
-    });
+  // getUserBidsWithSales = async () => {
+  //   const resp = await fetch(environment.context + '/bid/findByBidderWithAttatchSales', {
+  //     method: 'POST',
+  //     credentials: 'include',
+  //     body: JSON.stringify(this.props.TheUser),
+  //     headers: {
+  //       'content-type': 'application/json'
+  //     }
+  //   });
 
-    const bidList: BidWithSale[] = await resp.json();
-  }
+  //   const bidList: BidWithSale[] = await resp.json();
+  // }
   
   sendToEdit = () => {
     this.setState({ editNow: true });

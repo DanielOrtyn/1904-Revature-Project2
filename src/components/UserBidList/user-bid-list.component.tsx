@@ -1,15 +1,14 @@
 import React from 'react';
-import { SaleItem } from '../../model/saleItem';
-import { UserBid } from '../../model/UserBid';
 import { User } from '../../model/user';
 import { IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import { UserBidListCardComponent } from './user-bid-list-card.component';
+import { BidWithSale } from '../../model/BidWithSale';
 
 interface IUserBidListState {
     currentUser: User,
-    userBidList: UserBid[]
+    userBidList: {bidId: number, maxBidPrice: number, currentBidPrice: number,  img: string, endDate: string, title: string}[]
 }
 interface IUserBidListProps extends RouteComponentProps<{}> {
     currentUser: User
@@ -27,7 +26,7 @@ export class UserBidListComponent extends React.Component<IUserBidListProps, IUs
 
     componentDidMount = async () => {
         try {
-            const resp = await fetch('http://localhost:8080/bid/findByBidder', {
+            const resp = await fetch('http://localhost:8080/bid/findByBidderWithAttatchSales', {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(this.state.currentUser),
@@ -35,21 +34,31 @@ export class UserBidListComponent extends React.Component<IUserBidListProps, IUs
                     'content-type': 'application/json'
                 }
             });
-            const body = await resp.json();
+            const body: BidWithSale[] = await resp.json();
+            const body1 = body.map(bidWithSale1 => ({
+                bidId: bidWithSale1.bidId,
+                maxBidPrice: bidWithSale1.maxBidPrice,
+                currentBidPrice: bidWithSale1.currentBidPrice,
+                img: bidWithSale1.saleItem.itemImg.url,
+                endDate: bidWithSale1.saleItem.endDate,
+                title: bidWithSale1.saleItem.title,
+            }));
+            //console.log(`body = ${body[0].bidId}`);
             this.setState({
-                userBidList: body
+                userBidList: body1
             })
         } catch (err) {
             console.log(err);
         }
     }
 
+    
     render() {
         return (
             <>
-                {this.state.userBidList.map(userBid => (
-                    <UserBidListCardComponent key={'userBid-' + userBid.saleItemId} 
-                        userBid={userBid} /> 
+                {this.state.userBidList && this.state.userBidList.map(bidWithSale => (
+                    <UserBidListCardComponent key={'bidId-' + bidWithSale.img} 
+                        bidWithSale={bidWithSale} /> 
                 ))}
             </>
         );
