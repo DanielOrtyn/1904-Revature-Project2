@@ -53,7 +53,7 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
             listOfCategories: newlistOfCategories
         });
     }
-
+    
     componentDidMount = async () => {
         await this.fetchListOfCategories();
     }

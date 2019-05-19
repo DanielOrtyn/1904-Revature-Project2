@@ -1,32 +1,32 @@
 import React from 'react';
-import { SaleItem } from '../../model/saleItem';
 import { User } from '../../model/user';
 import { IState } from '../../reducers';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import SaleItemSmallCardComponent from '../saleitem/saleitem-smallcard.component';
+import { UserBidListCardComponent } from './user-bid-list-card.component';
+import { BidWithSale } from '../../model/BidWithSale';
 
-interface IUserSalesListState {
+interface IUserBidListState {
     currentUser: User,
-    userSalesList: SaleItem[]
+    userBidList: {bidId: number, maxBidPrice: number, currentBidPrice: number,  img: string, endDate: string, title: string}[]
 }
-interface IUserSalesListProps extends RouteComponentProps<{}> {
+interface IUserBidListProps extends RouteComponentProps<{}> {
     currentUser: User
 }
 
-export class UserBidListComponent extends React.Component<IUserSalesListProps, IUserSalesListState> {
+export class UserBidListComponent extends React.Component<IUserBidListProps, IUserBidListState> {
 
     constructor(props: any) {
         super(props);
         this.state = {
             currentUser: this.props.currentUser,
-            userSalesList: []
+            userBidList: []
         };
     }
 
     componentDidMount = async () => {
         try {
-            const resp = await fetch('http://localhost:8080/SaleItem/seller', {
+            const resp = await fetch('http://localhost:8080/bid/findByBidderWithAttatchSales', {
                 method: 'POST',
                 credentials: 'include',
                 body: JSON.stringify(this.state.currentUser),
@@ -34,22 +34,31 @@ export class UserBidListComponent extends React.Component<IUserSalesListProps, I
                     'content-type': 'application/json'
                 }
             });
-            const body = await resp.json();
+            const body: BidWithSale[] = await resp.json();
+            const body1 = body.map(bidWithSale1 => ({
+                bidId: bidWithSale1.bidId,
+                maxBidPrice: bidWithSale1.maxBidPrice,
+                currentBidPrice: bidWithSale1.currentBidPrice,
+                img: bidWithSale1.saleItem.itemImg.url,
+                endDate: bidWithSale1.saleItem.endDate,
+                title: bidWithSale1.saleItem.title,
+            }));
+            //console.log(`body = ${body[0].bidId}`);
             this.setState({
-                userSalesList: body
+                userBidList: body1
             })
         } catch (err) {
             console.log(err);
         }
     }
 
+    
     render() {
         return (
             <>
-                {this.state.userSalesList.map(item => (
-                    <SaleItemSmallCardComponent key={'saleItem-' + item.saleId}
-                        saleItem={item} history={this.props.history}
-                        location={this.props.location} match={this.props.match} />
+                {this.state.userBidList && this.state.userBidList.map(bidWithSale => (
+                    <UserBidListCardComponent key={'bidId-' + bidWithSale.img} 
+                        bidWithSale={bidWithSale} /> 
                 ))}
             </>
         );

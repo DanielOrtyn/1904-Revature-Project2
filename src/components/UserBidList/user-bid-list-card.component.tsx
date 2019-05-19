@@ -1,28 +1,27 @@
 import React from 'react';
-import { UserBid } from '../../model/UserBid';
-import { SaleItem } from '../../model/saleItem';
 
 interface IUserBidListCardProps {
-  userBid: UserBid;
-  saleItem: SaleItem;
+  bidWithSale: {bidId: number, maxBidPrice: number, currentBidPrice: number,  img: string, endDate: string, title: string};
 }
 
 export class UserBidListCardComponent extends React.PureComponent<IUserBidListCardProps> {
 
   render() {
-    const userBid = this.props.userBid;
-    const itemDate = new Date(this.props.saleItem.endDate);
+    const bidWithSale = this.props.bidWithSale;
+    const endDate1 = new Date(bidWithSale.endDate);
     return (
       <div className="card col-md-4 col-sm-6 col-xs-12">
-        <img src={this.props.saleItem.itemImg.url}
-          className="card-img-top"
+        <img src={bidWithSale.img}
+          className="card-img-top SaleItemPicture"
           alt="..." />
+
         <div className="card-body">
-          <h5 className="card-title">{this.props.saleItem.title}</h5>
+          <h5 className="card-title">{bidWithSale.title}</h5>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">Current Bid Price: {this.props.saleItem.currentBid.currentBidPrice}</li>
-          <li className="list-group-item">End Date: {itemDate.toDateString()}</li>
+          <li className="list-group-item">Current Bid Price: {bidWithSale.currentBidPrice}</li>
+          <li className="list-group-item">Max Bid Price: {bidWithSale.maxBidPrice}</li>
+          <li className="list-group-item">End Date: {endDate1.toDateString()}</li>
         </ul>
       </div>
     )
