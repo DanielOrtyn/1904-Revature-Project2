@@ -12,7 +12,7 @@ import { IState } from "../../reducers";
 interface INewBidCardProps extends RouteComponentProps<{}> {
     saleItem: SaleItem;
     currentUser?: User;
-    newSaleItem: (newSaleItem: SaleItem, history: any) => void
+    newSaleItem: (newSaleItem: SaleItem, history: any) => void;
 }
 
 interface INewBidCardState {
@@ -60,7 +60,7 @@ export class NewBidCardComponent extends React.Component<INewBidCardProps, INewB
     }
 
     render() {
-        const minBid: number = this.props.saleItem ? this.props.saleItem.currentBid.currentBidPrice : 0;
+        const currentBid: number = this.props.saleItem.currentBid ? this.props.saleItem.currentBid.currentBidPrice : 0;
         return (
             <div key={'Creating-Bid'} className="col-sm-2 col-md-6 col-sm-12">
                 <div>
@@ -69,8 +69,8 @@ export class NewBidCardComponent extends React.Component<INewBidCardProps, INewB
                             <tr>
                                 <td className="FixedCardImage">
                                     <ul className="list-group list-group-flush">
-                                        <li className="list-group-item">Current Winning Bid: {this.props.saleItem.currentBid.currentBidPrice}</li>
-                                        <li className="list-group-item">Your Max Bid<input min={minBid} type='number' onChange={this.handleBidMaximumChange}></input></li>
+                                        <li className="list-group-item">Current Winning Bid: {currentBid}</li>
+                                        <li className="list-group-item">Your Max Bid<input min={currentBid} type='number' onChange={this.handleBidMaximumChange}></input></li>
                                         <li className="list-group-item"><Button className="btn btn-success" onClick={this.createBid}>Create/Update Bid</Button></li>
                                     </ul>
                                 </td>

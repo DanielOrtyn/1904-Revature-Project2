@@ -15,6 +15,7 @@ import EditUserInfoComponent from './components/user/user.edit.page.component';
 import { SaleItemCategoryListComponent } from './components/SaleItemList/saleitem-category-list.component';
 import UserSalesListComponent from './components/UserSalesList/user-sales-list.component';
 import UserBidListComponent from './components/UserBidList/user-bid-list.component';
+import NewSaleCardComponent from './components/saleitem/saleitem.new.card.somponent';
 
 const App: React.FC = () => {
   return (
@@ -34,6 +35,7 @@ const App: React.FC = () => {
               <Route path="/userSalesList" component={UserSalesListComponent}/>
               <Route path="/userBidList" component={UserBidListComponent}/>
               <Route path="/edit-user" component={EditUserInfoComponent}/>
+              <Route path="/new-sale" component={NewSaleCardComponent}/>
               <Route component={HomeComponent} />
             </Switch>
           </div>
