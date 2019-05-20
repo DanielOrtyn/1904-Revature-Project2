@@ -53,7 +53,6 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
         newlistOfCategories = await resp.json();
         newlistOfCategories = newlistOfCategories.map(item =>
             new Category(item.categoryId, item.name));
-        newlistOfCategories.unshift(allCategory);
         this.setState({
             category: newlistOfCategories[0],
             listOfCategories: newlistOfCategories
