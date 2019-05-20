@@ -59,11 +59,11 @@ export class SignInComponent extends React.Component<ISignInProps, ISignInState>
           className="form-control" placeholder="Password"
           required value={password} onChange={this.updatePassword} />
 
-        <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button className="btn btn-lg btn-success btn-block" type="submit">Sign in</button>
         
         <p id="login-error">{errorMessage}</p>
       </form>
-      <button className="btn btn-sm btn-primary btn-block" onClick={this.sendToCreate}>Create Account</button>
+      <button className="btn btn-sm btn-success btn-block" onClick={this.sendToCreate}>Create Account</button>
       </div>
     );
   }

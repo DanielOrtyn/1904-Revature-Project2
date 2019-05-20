@@ -5,22 +5,29 @@ import { Category } from "../../model/category";
 import { IDisplayName } from "../../model/IDisplayName";
 import { User } from "../../model/user";
 import { IState } from "../../reducers";
+import { RouteComponentProps } from "react-router";
+import { Button } from "reactstrap";
+import { SaleItem } from "../../model/saleItem";
+import { ImageModel } from "../../model/imageModel";
+import { newSaleItem } from "../../actions/sales.actions";
+import { DropDownListInputComponent } from "../input/dopdownlist.component";
 
 const allCategory = new Category(-1, 'All')
 
-interface INewSaleCardProps {
-    currentUser: User
+interface INewSaleCardProps extends RouteComponentProps<{}> {
+    currentUser: User;
+    newSaleItem: (newSaleItem: SaleItem, history: any) => void;
 }
 
 interface INewSaleCardState {
     name: string;
     imgUrl: string;
     minPrice: number;
-    endDate: Date;
+    endDate: string;
     title: string;
     description: string;
     category: Category;
-    listOfCategories: Category[]
+    listOfCategories: Category[];
 }
 
 export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INewSaleCardState> {
@@ -30,7 +37,7 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
         this.state = {
             name: '',
             minPrice: 10.0,
-            endDate: newDate,
+            endDate: this.dateToString(newDate),
             title: '',
             description: '',
             imgUrl: "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg",
@@ -53,9 +60,36 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
             listOfCategories: newlistOfCategories
         });
     }
-    
+
+    createNewSale = async () => {
+        let newItemImage: ImageModel = new ImageModel(NaN, this.state.imgUrl, this.state.title);
+        let newSaleItem: SaleItem = new SaleItem(NaN, this.props.currentUser, newItemImage,
+            this.state.minPrice, (new Date(this.state.endDate)).getTime().toString()/*.toISOString()*/, this.state.title,
+            this.state.description, this.state.category, undefined);
+console.log(newSaleItem);
+        const resp = await fetch(environment.context + '/SaleItem', {
+            method: 'POST',
+            credentials: 'include',
+            body: JSON.stringify(newSaleItem),
+            headers: {
+                'content-type': 'application/json'
+            }
+        })
+        const parsedResp = await resp.json();
+        if (resp.status >= 200 && resp.status < 200) {
+            this.props.newSaleItem(parsedResp, this.props.history);
+            this.props.history.push('/sale-page')
+        }
+    }
+
     componentDidMount = async () => {
-        await this.fetchListOfCategories();
+        // check that there is a user to actually make a sale
+        if (this.props.currentUser) {
+            await this.fetchListOfCategories();
+        }
+        else {
+            this.props.history.push('/home')
+        }
     }
 
     changeCategoryShown = (newCategory: IDisplayName) => {
@@ -64,10 +98,6 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
                 category: newCategory
             });
         }
-    }
-
-    handleNameChange(event) {
-        this.setState({ name: event.target.value });
     }
     handleMinPriceChange(event) {
         this.setState({ minPrice: event.target.value });
@@ -82,13 +112,29 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
         this.setState({ imgUrl: event.target.value });
     }
     handleEndDateChange(event) {
-        this.setState({ endDate: event.target.value });
+        console.log(event.target.value)
+        try {
+            const newDate: Date = new Date(event.target.value);
+            console.log(event.target.value);
+            this.setState({ endDate: event.target.value });
+        }
+        catch (e) {
+            console.log(e);
+        }
+    }
+
+    dateToString(dateString: Date): string {
+        return `${dateString.getUTCFullYear().toString().padStart(4, '0')}` +
+            `-${(dateString.getUTCMonth() + 1).toString().padStart(2, '0')}` +
+            `-${dateString.getUTCDate().toString().padStart(2, '0')}`;
     }
 
     render() {
-        const dateString = `${this.state.endDate.getUTCFullYear()}-${this.state.endDate.getUTCMonth()}` +
-            `-${this.state.endDate.getUTCDate()}`;
-            console.log(dateString);
+        const dateString = this.state.endDate;
+        // `${this.state.endDate.getUTCFullYear().toString().padStart(4, '0')}` +
+        //     `-${(this.state.endDate.getUTCMonth()+1).toString().padStart(2, '0')}` +
+        //     `-${this.state.endDate.getUTCDate().toString().padStart(2, '0')}`;
+        console.log(dateString);
         return (
             <div key={'Creating-User'} className="col-sm-2 col-md-6 col-sm-12">
                 <div>
@@ -99,17 +145,31 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
                                     <img src={this.state.imgUrl}
                                         className="FixedCardImg"
                                         alt="..." />
-                                    <h5 className="centered">Select Picture</h5>
                                 </td>
                                 <td className="FixedCardImage">
                                     <ul className="list-group list-group-flush">
-                                        <li className="list-group-item">Name<input value={this.state.name} type='string' onChange={this.handleNameChange.bind(this)}></input></li>
-                                        <li className="list-group-item">Minimum Price<input value={this.state.minPrice} type='number' onChange={this.handleMinPriceChange.bind(this)}></input></li>
-                                        <li className="list-group-item">Title<input value={this.state.title} type='string' onChange={this.handleTitleChange.bind(this)}></input></li>
-                                        <li className="list-group-item">Description<input value={this.state.description} type='string' onChange={this.handleDescriptionChange.bind(this)}></input></li>
-                                        <li className="list-group-item">Image<input value={this.state.imgUrl} type='string' onChange={this.handleImgUrlChange.bind(this)}></input></li>
-                                        <li className="list-group-item">End Date<input value="2018-05-05" type='date' onChange={this.handleEndDateChange.bind(this)}></input></li>
-                                        {/* <li className="list-group-item"><Button className="btn btn-success" onClick={this.updateUser}>Create User</Button></li> */}
+                                        <li className="list-group-item">Title
+                                            <input value={this.state.title} type='string' onChange={this.handleTitleChange.bind(this)}></input>
+                                        </li>
+                                        <li className="list-group-item">Description
+                                            <input value={this.state.description} type='string' onChange={this.handleDescriptionChange.bind(this)}></input>
+                                        </li>
+                                        <li className="list-group-item">Minimum Price
+                                            <input value={this.state.minPrice} type='number' onChange={this.handleMinPriceChange.bind(this)}></input>
+                                        </li>
+                                        <li className="list-group-item">Image
+                                            <input value={this.state.imgUrl} type='string' onChange={this.handleImgUrlChange.bind(this)}></input>
+                                        </li>
+                                        <li className="list-group-item">Category
+                                            <DropDownListInputComponent optionsList={this.state.listOfCategories}
+                                                updateSelection={this.changeCategoryShown} />
+                                        </li>
+                                        <li className="list-group-item">End Date
+                                            <input value={dateString} type='date' onChange={this.handleEndDateChange.bind(this)}></input>
+                                        </li>
+                                        <li className="list-group-item">
+                                            <Button className="btn btn-success" onClick={this.createNewSale}>Create User</Button>
+                                        </li>
                                     </ul>
                                 </td>
                             </tr>
@@ -122,6 +182,7 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
         )
     }
 }
+
 const mapStateToProps = (state: IState) => {
     return {
         currentUser: state.auth.currentUser,
@@ -129,4 +190,8 @@ const mapStateToProps = (state: IState) => {
     }
 }
 
-export default connect(mapStateToProps)(NewSaleCardComponent);
+const mapDispatchToProps = {
+    newSaleItem: newSaleItem
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewSaleCardComponent);

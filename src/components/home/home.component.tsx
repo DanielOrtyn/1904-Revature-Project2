@@ -13,7 +13,7 @@ export class HomeComponent extends React.Component<any, HomeState> {
       download: undefined
     }
   }
-  componentWillMount = async() => {
+  componentDidMount = async() => {
     const resp = await fetch("http://localhost:8080/SaleItem/topPriced/3", {
       method: 'GET',
       credentials: 'include'

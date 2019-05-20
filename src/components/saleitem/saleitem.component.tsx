@@ -60,7 +60,7 @@ export class SaleItemComponent extends React.Component<ISaleItemComponentProps, 
                         </div>
                         <div className='bidDetailDiv'>
                             <h1>{saleItem.title}</h1>
-                            <p>Price: ${saleItem.currentBid.currentBidPrice}</p>
+                            <p>Price: ${saleItem.currentBid ? saleItem.currentBid.currentBidPrice : NaN}</p>
                             <p>End Date: {itemDate.toDateString()}</p>
                             <p>Seller: {saleItem.seller.username} Rating: {saleItem.seller.rating / saleItem.seller.ratingCount}</p>
                             <h4>Description</h4>

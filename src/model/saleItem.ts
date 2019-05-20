@@ -7,7 +7,7 @@ export class SaleItem {
     saleId: number;
     seller: User;
     itemImg: ImageModel;
-    currentBid: UserBid;
+    currentBid?: UserBid;
     minPrice: number;
     endDate: string;
     title: string;
@@ -15,8 +15,8 @@ export class SaleItem {
     category: Category;
 
     constructor(saleId: number, seller: User, itemImg: ImageModel,
-        currentBid: UserBid, minPrice: number, endDate: string,
-        title: string, description: string, category: Category) {
+        minPrice: number, endDate: string, title: string, description: string,
+        category: Category, currentBid?: UserBid) {
         this.saleId = saleId;
         this.seller = seller;
         this.itemImg = itemImg;
@@ -33,12 +33,8 @@ export class SaleItem {
             return any;
         }
         return new SaleItem(any.saleId, User.constructViaObject(any.seller),
-        ImageModel.constructViaObject(any.itemImg), UserBid.constructViaObject(any.currentBid),
-        any.minPrice, any.endDate, any.title, any.description,
-        Category.constructViaObject(any.category));
-    }
-
-    getCurrentBidPrice(): number {
-        return this.currentBid.currentBidPrice;
+            ImageModel.constructViaObject(any.itemImg),
+            any.minPrice, any.endDate, any.title, any.description,
+            Category.constructViaObject(any.category), UserBid.constructViaObject(any.currentBid));
     }
 }

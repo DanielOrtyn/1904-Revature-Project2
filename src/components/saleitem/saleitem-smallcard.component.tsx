@@ -18,6 +18,7 @@ export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSma
 
     render() {
         const saleItem = this.props.saleItem;
+        const currentBidPrice = saleItem.currentBid? saleItem.currentBid.currentBidPrice : NaN;
         const itemDate = new Date(this.props.saleItem.endDate);
         return (
             <div className="card col-md-4 col-md-6 col-xs-12 ItemCard ">
@@ -28,7 +29,7 @@ export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSma
                     <h5 className="card-title">{saleItem.title}</h5>
                 </div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">Minimum Bid Price: ${saleItem.currentBid.currentBidPrice}</li>
+                    <li className="list-group-item">Current Bid: ${currentBidPrice}</li>
                     <li className="list-group-item">End Date: {itemDate.toDateString()}</li>
                     <li className="list-group-item">
                         <button className="btn btn-success" onClick={this.goToSalePage}>Go To</button>
