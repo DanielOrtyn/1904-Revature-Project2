@@ -46,15 +46,16 @@ export class NewBidCardComponent extends React.Component<INewBidCardProps, INewB
             });
             const bidJson = bidResp.json();
             console.log(bidJson);
-            if (bidResp.status >= 200 && bidResp.status < 300) {
+            if (bidResp.status < 200 && bidResp.status >= 300) {
                 return;
             }
             const saleItemUpdateResp = await fetch(`http://localhost:8080/SaleItem/id/` + this.props.saleItem.saleId, {
                 method: "Get",
                 credentials: "include"
             });
-
-            this.props.newSaleItem(await saleItemUpdateResp.json(), this.props.history);
+            const saleItemParsed = await saleItemUpdateResp.json();
+            console.log(saleItemParsed)
+            this.props.newSaleItem(saleItemParsed, this.props.history);
 
         }
     }

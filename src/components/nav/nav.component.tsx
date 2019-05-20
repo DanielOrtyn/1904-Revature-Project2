@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import RevLogo from '../../assets/rev-logo.png';
+import UBuyLogo from '../../assets/UBuy.png';
 import { connect } from 'react-redux';
 import { User } from '../../model/user';
 import { IState } from '../../reducers';
@@ -27,7 +27,7 @@ export class NavComponent extends React.PureComponent<INaveProps> {
                 </table>
                 <div className="navbar-header c-pointer shift-left">
                     <Link to="/home" className="unset-anchor">
-                        <img className="img-adjust-position rev-logo" src={RevLogo} alt="revature" />
+                        <img className="img-adjust-position rev-logo" src={UBuyLogo} alt="revature" />
                     </Link>
                 </div>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
