@@ -20,7 +20,6 @@ interface INewSaleCardProps extends RouteComponentProps<{}> {
 }
 
 interface INewSaleCardState {
-    name: string;
     imgUrl: string;
     minPrice: number;
     endDate: string;
@@ -35,14 +34,13 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
         super(props);
         let newDate: Date = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
         this.state = {
-            name: '',
             minPrice: 10.0,
             endDate: this.dateToString(newDate),
             title: '',
             description: '',
             imgUrl: "http://improvementarchitecture.co.uk/wp-content/uploads/2015/02/missing-profile-picture.jpg",
             category: allCategory,
-            listOfCategories: [allCategory]
+            listOfCategories: []
         }
     }
 
@@ -57,6 +55,7 @@ export class NewSaleCardComponent extends React.Component<INewSaleCardProps, INe
             new Category(item.categoryId, item.name));
         newlistOfCategories.unshift(allCategory);
         this.setState({
+            category: newlistOfCategories[0],
             listOfCategories: newlistOfCategories
         });
     }
@@ -168,7 +167,7 @@ console.log(newSaleItem);
                                             <input value={dateString} type='date' onChange={this.handleEndDateChange.bind(this)}></input>
                                         </li>
                                         <li className="list-group-item">
-                                            <Button className="btn btn-success" onClick={this.createNewSale}>Create User</Button>
+                                            <Button className="btn btn-success" onClick={this.createNewSale}>Create</Button>
                                         </li>
                                     </ul>
                                 </td>
