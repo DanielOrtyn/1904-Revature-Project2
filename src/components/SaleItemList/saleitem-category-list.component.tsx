@@ -113,11 +113,11 @@ export class SaleItemCategoryListComponent extends React.Component<any, ISaleIte
                     <TextInputComponent valueUpdate={this.updateSearchTerm} placeHolder='search' />
                     <button onClick={this.searchSaleItems}>Search</button>
                 </div>
-                {this.state.saleItemList[1] &&
+                {this.state.saleItemList[0] &&
                     <SaleItemListComponent saleItemList={this.state.saleItemList}
                         history={this.props.history} location={this.props.location}
                         match={this.props.match} />}
-                {this.state.saleItemList[1] == undefined &&
+                {this.state.saleItemList[0] == undefined &&
                     <h1>Loading...</h1>}
             </>
         );
