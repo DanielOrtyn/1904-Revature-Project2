@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router';
 import { newSaleItem } from '../../actions/sales.actions';
 import { SaleItem } from '../../model/saleItem';
 import { IState } from '../../reducers';
+import { Button } from "reactstrap";
 
 interface ISaleItemSmallCardProps extends RouteComponentProps<{}> {
     saleItem: SaleItem;
@@ -32,7 +33,7 @@ export class SaleItemSmallCardComponent extends React.PureComponent<ISaleItemSma
                     <li className="list-group-item">Current Bid: ${currentBidPrice}</li>
                     <li className="list-group-item">End Date: {itemDate.toDateString()}</li>
                     <li className="list-group-item">
-                        <button className="btn btn-success" onClick={this.goToSalePage}>Go To</button>
+                        <Button className="btn btn-success" onClick={this.goToSalePage}>Go To</Button>
                     </li>
                 </ul>
             </div>
